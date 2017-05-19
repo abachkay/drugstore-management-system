@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DrugstoreManagementSystem.Entities;
+using DrugstoreManagementSystem.Repositories;
 
 namespace DrugstoreManagementSystem.UI
 {
@@ -20,9 +22,13 @@ namespace DrugstoreManagementSystem.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public IEnumerable<Medicine> Medicines { get; set; }
         public MainWindow()
         {
-            InitializeComponent();            
+            DataContext = this;
+            InitializeComponent();
+            Medicines = new DrugstoreManagementSystemContext().Medicines.ToList();
+            DG.ItemsSource = Medicines.ToList();
         }
     }
 }

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrugstoreManagementSystemContext.cs" />
+    <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineSaleDetail.cs" />
     <Compile Include="Entities\Sale.cs" />
@@ -58,6 +59,18 @@
     <Compile Include="Migrations\201705191548465_AddedTablesSalesAndMedicine.cs" />
     <Compile Include="Migrations\201705191548465_AddedTablesSalesAndMedicine.Designer.cs">
       <DependentUpon>201705191548465_AddedTablesSalesAndMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191622131_CreatedManagerTable.cs" />
+    <Compile Include="Migrations\201705191622131_CreatedManagerTable.Designer.cs">
+      <DependentUpon>201705191622131_CreatedManagerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191623400_CreatedManagerTableAgain.cs" />
+    <Compile Include="Migrations\201705191623400_CreatedManagerTableAgain.Designer.cs">
+      <DependentUpon>201705191623400_CreatedManagerTableAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191737192_FixedColumnTypes.cs" />
+    <Compile Include="Migrations\201705191737192_FixedColumnTypes.Designer.cs">
+      <DependentUpon>201705191737192_FixedColumnTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +85,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705191548465_AddedTablesSalesAndMedicine.resx">
       <DependentUpon>201705191548465_AddedTablesSalesAndMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191622131_CreatedManagerTable.resx">
+      <DependentUpon>201705191622131_CreatedManagerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191623400_CreatedManagerTableAgain.resx">
+      <DependentUpon>201705191623400_CreatedManagerTableAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191737192_FixedColumnTypes.resx">
+      <DependentUpon>201705191737192_FixedColumnTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

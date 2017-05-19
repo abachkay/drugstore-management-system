@@ -14,6 +14,7 @@ namespace DrugstoreManagementSystem.Entities
         }
         public virtual DbSet<Medicine> Medicines { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<MedicineSaleDetail> MedicineSaleDetails { get; set; }
 
         //public virtual DbSet<Customer> Customers { get; set; }

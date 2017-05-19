@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DrugstoreManagementSystem.Repositories
 {
-    public class Class1
-    {
+    public class UnitOfWork
+    {        
     }
 }
