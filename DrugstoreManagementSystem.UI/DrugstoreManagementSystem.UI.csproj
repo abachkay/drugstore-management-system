@@ -93,11 +93,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\DrugstoreManagementSystem.Entities.csproj">
-      <Project>{33df57e2-98a4-429d-a627-8a664534ee6a}</Project>
-      <Name>DrugstoreManagementSystem.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

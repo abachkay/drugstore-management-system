@@ -1,9 +1,0 @@
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\ClassLibrary1.dll
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\obj\Debug\ClassLibrary1.dll
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\ClassLibrary1.dll.config
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.dll
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.xml
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.xml
