@@ -1,5 +1,0 @@
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem\obj\Debug\DrugstoreManagementSystem.UI.csprojResolveAssemblyReference.cache
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem\obj\Debug\MainWindow.g.cs
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem\obj\Debug\App.g.cs
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem\obj\Debug\DrugstoreManagementSystem_MarkupCompile.cache
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem\obj\Debug\DrugstoreManagementSystem_MarkupCompile.lref
