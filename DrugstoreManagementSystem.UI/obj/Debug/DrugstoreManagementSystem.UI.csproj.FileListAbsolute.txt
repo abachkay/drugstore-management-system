@@ -1,0 +1,16 @@
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.csprojResolveAssemblyReference.cache
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\MainWindow.g.cs
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\App.g.cs
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI_MarkupCompile.cache
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI_MarkupCompile.lref
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.UI.exe.config
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.UI.exe
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.UI.pdb
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\ClassLibrary1.dll
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\ClassLibrary1.pdb
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\MainWindow.baml
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.g.resources
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.Properties.Resources.resources
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.csproj.GenerateResource.Cache
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.exe
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.pdb
