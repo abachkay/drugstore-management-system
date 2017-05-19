@@ -7,4 +7,3 @@ C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\
 C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.xml
 C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\abachkay\Documents\drugstore-management-system\ClassLibrary1\obj\Debug\DrugstoreManagementSystem.Entities.csprojResolveAssemblyReference.cache
