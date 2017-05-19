@@ -14,3 +14,6 @@ C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSyste
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.csproj.GenerateResource.Cache
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.exe
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\DrugstoreManagementSystem.UI.pdb
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.dll
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\ClassLibrary1.dll.config
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.xml
