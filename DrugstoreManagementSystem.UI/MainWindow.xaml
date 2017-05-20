@@ -13,7 +13,77 @@
     <Grid>
         <TabControl>
             <TabItem Header="Medicines">
-                <UIViews:MedicinesView DataContext="{Binding MedicinesViewModel}"></UIViews:MedicinesView>
+                <TabControl Name="MedicinesTabControl">
+                    <TabItem Header="Display">
+                        <StackPanel>
+                            <Grid>
+                                <CheckBox Name="OnlyAvailibleCheckBox" HorizontalAlignment="Left" Margin="5" Click="OnlyAvailibleCheckBox_Click">Only availible</CheckBox>
+                                <StackPanel>
+                                    <Button Name="MedicinesDeleteButton" HorizontalAlignment="Right" Margin="5" Click="MedicinesDeleteButton_Click">Delete</Button>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Margin="5" VerticalAlignment="Center">New price:</TextBlock>
+                                        <TextBox Name="MedicineNewPricefTextBox" Margin="5" Width="50"></TextBox>
+                                        <Button Name="MedicineChangePriceButton" Margin="5" Click="MedicineChangePriceButton_Click">Change price</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <DataGrid SelectionMode="Single" Margin="5" Name="MedicinesDataGrid"></DataGrid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Add">
+                        <StackPanel Margin="5">
+                            <TextBlock Margin="5">Name</TextBlock>
+                            <TextBox Margin="5" Width="200" HorizontalAlignment="Left" Name="MedicineNameTextBox"></TextBox>
+                            <TextBlock Margin="5">Producer</TextBlock>
+                            <TextBox Margin="5" Width="200" HorizontalAlignment="Left" Name="MedicineProducerNameTextBox"></TextBox>
+                            <TextBlock Margin="5">Price</TextBlock>
+                            <TextBox Margin="5" Width="200" HorizontalAlignment="Left" Name="MedicinePriceTextBox"></TextBox>
+                            <CheckBox Margin="5" Name="RequiresPrescriptionCheckbox">Requires prescription</CheckBox>
+                            <Button Name="AddMedicineButton" Width="200" Margin="5" HorizontalAlignment="Left" Click="AddMedicineButton_Click">Add</Button>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+            <TabItem Header="Suppliers">
+                <TabControl Name="SuppliersTabControl">
+                    <TabItem Header="Display">
+                        <StackPanel>
+                            <Button Name="SupplierDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>
+                        <DataGrid Name="SuppliersDataGrid"></DataGrid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Add">
+                        <StackPanel Margin="5">
+                            <TextBlock Margin="5">Name</TextBlock>
+                            <TextBox Margin="5" Width="200" HorizontalAlignment="Left" Name="SupplierNameTextBox"></TextBox>
+                            <Button Name="SupplierAddTextBox" Width="200" Margin="5" HorizontalAlignment="Left" Click="SupplierAddTextBox_Click">Add</Button>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+            <TabItem Header="Supplies">
+                <TabControl Name="SuppliesTabControl">
+                    <TabItem Header="Display">
+                        <StackPanel>
+                            <Button Name="SupplieDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DataGrid Grid.Column="0" Name="SuppliesDataGrid" MouseDown="SuppliesDataGrid_MouseDown"></DataGrid>
+                                <DataGrid Grid.Column="1" Name="SuppliesMedicinesDataGrid"></DataGrid>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Add">
+                        <StackPanel Margin="5">
+                            <TextBlock Margin="5">Name</TextBlock>
+                            <TextBox Margin="5" Width="200" HorizontalAlignment="Left" Name="SupplyNameTextBox"></TextBox>
+                            <Button Name="SupplieAddTextBox" Width="200" Margin="5" HorizontalAlignment="Left" Click="SupplierAddTextBox_Click">Add</Button>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
             </TabItem>
         </TabControl>
     </Grid>
