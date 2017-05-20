@@ -76,8 +76,8 @@ namespace DrugstoreManagementSystem.UI
             {
                 MedicinesDataGrid.ItemsSource = unitOfWork.MedicineRepository.GetAll.Select(m => new { Name = m.MedicineName, Producer = m.ProducerName, Price = m.Price, Quantity = m.Quantity, Prescription_Required = m.PrescriptionRequired }).ToList();
                 SuppliersDataGrid.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => new { Name = s.SupplierName }).ToList();
-                SuppliesDataGrid.ItemsSource = unitOfWork.SupplyRepository.GetAll.Select(s => new { Date = s.SupplyDate.Date.ToString(), Total = s.SupplyTotal, Supplier = s.Supplier.SupplierName });
-                SalesDataGrid.ItemsSource = unitOfWork.SaleRepository.GetAll.Select(s => new { Date = s.SaleDate.Date.ToString(), Total = s.SaleTotal });
+                SuppliesDataGrid.ItemsSource = unitOfWork.SupplyRepository.GetAll.Select(s => new { Date = s.SupplyDate.Date.ToString("d MMM yyyy"), Total = s.SupplyTotal, Supplier = s.Supplier.SupplierName });
+                SalesDataGrid.ItemsSource = unitOfWork.SaleRepository.GetAll.Select(s => new { Date = s.SaleDate.Date.ToString("d MMM yyyy"), Total = s.SaleTotal });
 
                 MedicineSupplyComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
                 MedicineSaleComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();

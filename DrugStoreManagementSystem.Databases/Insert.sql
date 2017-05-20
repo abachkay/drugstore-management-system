@@ -1,11 +1,11 @@
 ﻿USE DrugstoreManagementSystem
 
 INSERT INTO MEDICINES VALUES
-('Centramon','Darnica',200,1000,0),
-('Aspirin','Enroling',300,1000,0),
-('Dufalac','Vary',140,1000,0),
-('Ertan','Dart',500,1000,1),
-('Martan','Rith',200,1000,1)
+('Centramon','Darnica',200,0,2000),
+('Aspirin','Enroling',300,1,1000),
+('Dufalac','Vary',140,1,0),
+('Ertan','Dart',500,1,1000),
+('Martan','Rith',200,0,1000)
 
 INSERT INTO Sales VALUES
 ('2-2-2016',4400),
