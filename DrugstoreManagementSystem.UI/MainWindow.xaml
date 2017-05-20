@@ -65,23 +65,72 @@
                 <TabControl Name="SuppliesTabControl">
                     <TabItem Header="Display">
                         <StackPanel>
-                            <Button Name="SupplieDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>
+                            <Button Name="SupplyDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <DataGrid Grid.Column="0" Name="SuppliesDataGrid" MouseDown="SuppliesDataGrid_MouseDown"></DataGrid>
-                                <DataGrid Grid.Column="1" Name="SuppliesMedicinesDataGrid"></DataGrid>
+                                <DataGrid Grid.Column="0" Name="SuppliesDataGrid" SelectionChanged="SuppliesDataGrid_SelectionChanged"/>
+                                <DataGrid Grid.Column="1" Name="SuppliesMedicinesDataGrid"/>
                             </Grid>
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="Add">
-                        <StackPanel Margin="5">
-                            <TextBlock Margin="5">Name</TextBlock>
-                            <TextBox Margin="5" Width="200" HorizontalAlignment="Left" Name="SupplyNameTextBox"></TextBox>
-                            <Button Name="SupplieAddTextBox" Width="200" Margin="5" HorizontalAlignment="Left" Click="SupplierAddTextBox_Click">Add</Button>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200px"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Margin="5">Medicine</TextBlock>
+                                <ComboBox Name="MedicineSupplyComboBox" Margin="5"></ComboBox>
+                               
+                                <TextBlock Margin="5">Quantity</TextBlock>
+                                <TextBox Margin="5" Name="MedicineSupplyQuantityTextBox"></TextBox>
+                                <Button Name="MedicineSupplyAddButton" Margin="5" Click="MedicineSupplyAddButton_Click">Add medicine to supply</Button>
+                                <TextBlock Margin="5">Supplier</TextBlock>
+                                <ComboBox Name="MedicineSupplySupplierComboBox" Margin="5"></ComboBox>
+                                <DatePicker Margin="5" Name="MedicineSupplyDatePicker"></DatePicker>
+                                <Button Name="SupplyAddButton" Margin="5" Click="SupplyAddButton_Click">Add supply</Button>
+                            </StackPanel>
+                            <DataGrid Name="MedicineSupplyAddDataGrid" Grid.Column="1"></DataGrid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+            <TabItem Header="Sales">
+                <TabControl Name="SalesTabControl">
+                    <TabItem Header="Display">
+                        <StackPanel>
+                            <Button Name="SaleDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DataGrid Grid.Column="0" Name="SalesDataGrid" SelectionChanged="SalesDataGrid_SelectionChanged"/>
+                                <DataGrid Grid.Column="1" Name="SalesMedicinesDataGrid"/>
+                            </Grid>
                         </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Add">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200px"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Margin="5">Medicine</TextBlock>
+                                <ComboBox Name="MedicineSaleComboBox" Margin="5"></ComboBox>
+                                <TextBlock Margin="5">Quantity</TextBlock>
+                                <TextBox Margin="5" Name="MedicineSaleQuantityTextBox"></TextBox>
+                                <Button Name="MedicineSaleAddButton" Margin="5" Click="MedicineSaleAddButton_Click">Add medicine to sale</Button>
+                                <DatePicker Margin="5" Name="MedicineSaleDatePicker"></DatePicker>
+                                <Button Name="SaleAddButton" Margin="5" Click="SaleAddButton_Click">Add sale</Button>
+                            </StackPanel>
+                            <DataGrid Name="MedicineSaleAddDataGrid" Grid.Column="1"></DataGrid>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </TabItem>
