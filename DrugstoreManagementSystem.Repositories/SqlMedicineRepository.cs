@@ -30,6 +30,17 @@ namespace DrugstoreManagementSystem.Repositories
             _context.SaveChanges();
         }
 
+        public void ChangePrice(Medicine medicine, decimal newPrice)
+        {
+
+            if (medicine == null)
+            {
+                throw new ArgumentNullException();
+            }
+            medicine.Price = newPrice;
+            _context.SaveChanges();
+        }
+
         public void Create(Medicine medicine)
         {
             if (medicine == null)

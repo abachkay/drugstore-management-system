@@ -24,6 +24,6 @@ namespace DrugstoreManagementSystem.Entities
         [Required]
         public int Quantity { get; set; }        
         public virtual ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
-        public virtual ICollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
+        public virtual ICollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }       
     }
 }

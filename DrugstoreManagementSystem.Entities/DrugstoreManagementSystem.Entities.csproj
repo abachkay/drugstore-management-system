@@ -91,6 +91,14 @@
     <Compile Include="Migrations\201705200217364_AddedSupplyAndSuppliers.Designer.cs">
       <DependentUpon>201705200217364_AddedSupplyAndSuppliers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705200603189_ChangeDateTypes.cs" />
+    <Compile Include="Migrations\201705200603189_ChangeDateTypes.Designer.cs">
+      <DependentUpon>201705200603189_ChangeDateTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705200617016_ManyToManyTry.cs" />
+    <Compile Include="Migrations\201705200617016_ManyToManyTry.Designer.cs">
+      <DependentUpon>201705200617016_ManyToManyTry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705200217364_AddedSupplyAndSuppliers.resx">
       <DependentUpon>201705200217364_AddedSupplyAndSuppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705200603189_ChangeDateTypes.resx">
+      <DependentUpon>201705200603189_ChangeDateTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705200617016_ManyToManyTry.resx">
+      <DependentUpon>201705200617016_ManyToManyTry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
