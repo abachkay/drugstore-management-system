@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DrugstoreManagementSystem.Repositories
 {
-    public interface ISaleRepository
+    public interface ISupplyRepository
     {
-        IEnumerable<Sale> GetAll { get; }
-        void Create(Sale sale);
-        void Delete(Sale sale);            
+        IEnumerable<Supply> GetAll { get; }
+        void Create(Supply supply);
+        void Delete(Supply supply);
     }
 }

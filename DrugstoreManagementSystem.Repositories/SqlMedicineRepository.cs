@@ -9,33 +9,49 @@ namespace DrugstoreManagementSystem.Repositories
 {
     public class SqlMedicineRepository : IMedicineRepository
     {      
-        private readonly DrugstoreManagementSystemContext _dbContext;
-        public SqlMedicineRepository()
+        private readonly DrugstoreManagementSystemContext _context;
+        public SqlMedicineRepository(DrugstoreManagementSystemContext context)
         {
-            _dbContext = new DrugstoreManagementSystemContext();
+            _context = context;
         }
-        public IEnumerable<Medicine> Medicines => _dbContext.Medicines;
-       
+        public IEnumerable<Medicine> Medicines => _context.Medicines;
+
+        public IEnumerable<Medicine> GetAll => _context.Medicines;
+
+        public IEnumerable<Medicine> GetAvailible => _context.Medicines.Where(m => m.Quantity > 0);
+
         public void Add(Medicine medicine, int quantity)
         {
+            if (medicine == null)
+            {
+                throw new ArgumentNullException();
+            }
             medicine.Quantity += quantity;
-            _dbContext.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void Create(Medicine medicine)
         {
             if (medicine == null)
             {
-                throw new ArgumentNullException("Medicine is empty");
+                throw new ArgumentNullException();
             }
-            _dbContext.Medicines.Add(medicine);
-            _dbContext.SaveChanges();
+            _context.Medicines.Add(medicine);
+            _context.SaveChanges();
         }
 
         public void Delete(Medicine medicine)
         {
-            _dbContext.Medicines.Remove(medicine);
-            _dbContext.SaveChanges();
+            if (medicine == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (medicine.MedicineSaleDetails.Any() || medicine.MedicineSupplyDetails.Any())
+            {
+                throw new InvalidOperationException("This medicine is still in some sale or supply.");
+            }
+            _context.Medicines.Remove(medicine);
+            _context.SaveChanges();
         }
     };          
 }
