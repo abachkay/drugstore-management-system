@@ -22,7 +22,7 @@ namespace DrugstoreManagementSystem.Repositories
             {
                 throw new ArgumentNullException();
             }
-            sale.SaleTotal = sale.MedicineSaleDetails.Sum(s => s.Quantity * s.Medicine.Price);
+            //sale.SaleTotal = sale.MedicineSaleDetails.Sum(s => s.Quantity * s.Medicine.Price);
             _context.Sales.Add(sale);
             _context.SaveChanges();
         }

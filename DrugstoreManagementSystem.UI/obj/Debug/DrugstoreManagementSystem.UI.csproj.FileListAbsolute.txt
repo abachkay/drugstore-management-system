@@ -16,9 +16,7 @@ C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSyste
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.Repositories.dll
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.dll
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.Entities.pdb
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.Entities.dll.config
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.Repositories.pdb
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\DrugstoreManagementSystem.Repositories.dll.config
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.xml
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.SqlServer.xml
