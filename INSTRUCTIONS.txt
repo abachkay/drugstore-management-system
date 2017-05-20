@@ -1,3 +1,8 @@
+1. Run SQL Server Management Studio 2014 Express
+2. Run Create.sql from DrugstoreManagementSystem.Database
+3. Run Insert.sql from DrugstoreManagementSystem.Database
+4. Run Application from DrugstoreManagementSystem.UI
+
 Login: abachkay
 Password: 12345678
 

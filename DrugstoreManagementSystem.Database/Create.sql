@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[Medicines] (
     [MedicineName] [nvarchar](max) NOT NULL,
     [ProducerName] [nvarchar](max) NOT NULL,
     [Price] [decimal](18, 2) NOT NULL,
-	[PrescriptionRequired] [bit] NOT NULL
+	[PrescriptionRequired] [bit] NOT NULL,
     [Quantity] [int] NOT NULL,        
 )
     
