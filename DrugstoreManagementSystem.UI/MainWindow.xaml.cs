@@ -78,11 +78,13 @@ namespace DrugstoreManagementSystem.UI
                 SuppliersDataGrid.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => new { Name = s.SupplierName }).ToList();
                 SuppliesDataGrid.ItemsSource = unitOfWork.SupplyRepository.GetAll.Select(s => new { Date = s.SupplyDate.Date.ToString(), Total = s.SupplyTotal, Supplier = s.Supplier.SupplierName });
                 SalesDataGrid.ItemsSource = unitOfWork.SaleRepository.GetAll.Select(s => new { Date = s.SaleDate.Date.ToString(), Total = s.SaleTotal });
+
                 MedicineSupplyComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
+                MedicineSaleComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
+
                 MedicineSupplySupplierComboBox.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => s.SupplierName);
                 MedicineSupplySupplierComboBox.SelectedIndex = 0;
-                MedicineSupplyComboBox.SelectedIndex = 0;
-                MedicineSaleComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
+                MedicineSupplyComboBox.SelectedIndex = 0;                
                 MedicineSaleComboBox.SelectedIndex = 0;                
             }
         }
@@ -96,7 +98,14 @@ namespace DrugstoreManagementSystem.UI
             }
             using (var unitOfWork = new UnitOfWork())
             {
-                unitOfWork.MedicineRepository.Delete(unitOfWork.MedicineRepository.GetAll.ToList()[MedicinesDataGrid.SelectedIndex]);
+                try
+                {
+                    unitOfWork.MedicineRepository.Delete(unitOfWork.MedicineRepository.GetAll.ToList()[MedicinesDataGrid.SelectedIndex]);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             RefreshData();
         }
@@ -190,7 +199,7 @@ namespace DrugstoreManagementSystem.UI
                     MedicineSupplyDetails.Add(new MedicineSupplyDetail()
                     {
                         Quantity = quantity,
-                        Medicine = unitOfWork.MedicineRepository.GetAll.ToList()[MedicineSupplyComboBox.SelectedIndex]
+                        Medicine = unitOfWork.MedicineRepository.GetAvailible.ToList()[MedicineSupplyComboBox.SelectedIndex]
                     });
 
                     MedicineSupplyAddDataGrid.ItemsSource = MedicineSupplyDetails.Select(msd => new { Medicine = msd.Medicine.MedicineName, Quantity = msd.Quantity, }).ToList();
@@ -251,7 +260,7 @@ namespace DrugstoreManagementSystem.UI
                     MedicineSaleDetails.Add(new MedicineSaleDetail()
                     {
                         Quantity = quantity,
-                        Medicine = unitOfWork.MedicineRepository.GetAll.ToList()[MedicineSaleComboBox.SelectedIndex]
+                        Medicine = unitOfWork.MedicineRepository.GetAvailible.ToList()[MedicineSaleComboBox.SelectedIndex]
                     });
 
                     MedicineSaleAddDataGrid.ItemsSource = MedicineSaleDetails.Select(msd => new { Medicine = msd.Medicine.MedicineName, Quantity = msd.Quantity, }).ToList();
@@ -294,6 +303,20 @@ namespace DrugstoreManagementSystem.UI
                         Select(m =>new { Name = m.MedicineName, Producer = m.ProducerName, Price = m.Price, Quantity = m.MedicineSaleDetails.FirstOrDefault().Quantity, Prescription_Required = m.PrescriptionRequired }).ToList();
                 }
             }
+        }
+
+        private void SaleDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SalesDataGrid.SelectedIndex < 0)
+            {
+                MessageBox.Show("You must select item first.");
+                return;
+            }
+            using (var unitOfWork = new UnitOfWork())
+            {
+                unitOfWork.SaleRepository.Delete(unitOfWork.SaleRepository.GetAll.ToList()[SalesDataGrid.SelectedIndex]);
+            }
+            RefreshData();
         }
     }
 }

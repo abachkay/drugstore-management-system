@@ -19,7 +19,7 @@
                             <Grid>
                                 <CheckBox Name="OnlyAvailibleCheckBox" HorizontalAlignment="Left" Margin="5" Click="OnlyAvailibleCheckBox_Click">Only availible</CheckBox>
                                 <StackPanel>
-                                    <Button Name="MedicinesDeleteButton" HorizontalAlignment="Right" Margin="5" Click="MedicinesDeleteButton_Click">Delete</Button>
+                                    <!--<Button Name="MedicinesDeleteButton" HorizontalAlignment="Right" Margin="5" Click="MedicinesDeleteButton_Click">Delete</Button>-->
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <TextBlock Margin="5" VerticalAlignment="Center">New price:</TextBlock>
                                         <TextBox Name="MedicineNewPricefTextBox" Margin="5" Width="50"></TextBox>
@@ -48,7 +48,7 @@
                 <TabControl Name="SuppliersTabControl">
                     <TabItem Header="Display">
                         <StackPanel>
-                            <Button Name="SupplierDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>
+                            <!--<Button Name="SupplierDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>-->
                         <DataGrid Name="SuppliersDataGrid"></DataGrid>
                         </StackPanel>
                     </TabItem>
@@ -65,7 +65,7 @@
                 <TabControl Name="SuppliesTabControl">
                     <TabItem Header="Display">
                         <StackPanel>
-                            <Button Name="SupplyDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>
+                            <!--<Button Name="SupplyDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>-->
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -103,7 +103,7 @@
                 <TabControl Name="SalesTabControl">
                     <TabItem Header="Display">
                         <StackPanel>
-                            <Button Name="SaleDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>
+                            <!--<Button Name="SaleDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SaleDeleteButton_Click">Delete</Button>-->
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>

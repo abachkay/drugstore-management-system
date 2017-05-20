@@ -60,5 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Insert.sql" />
+    <None Include="Create.sql" />
+    <None Include="Drop.sql" />
   </ItemGroup>
 </Project>
