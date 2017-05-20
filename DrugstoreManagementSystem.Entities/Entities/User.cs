@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace DrugstoreManagementSystem.Entities
 {
-    public class Manager
+    public class User
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        
+        public int UserId { get; set; }
+        [Required]
         public string Login { get; set; }
-        public string Password { get; set; }
+        [Required]
+        public string PasswordHash { get; set; }
     }
 }

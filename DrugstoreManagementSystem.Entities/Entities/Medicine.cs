@@ -13,10 +13,15 @@ namespace DrugstoreManagementSystem.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MedicineId { get; set; }
+        [Required]
         public string MedicineName { get; set; }
+        [Required]
         public string ProducerName { get; set; }
+        [Required]
         public decimal Price { get; set; }
+        [Required]
         public int Quantity { get; set; }
+        [Required]
         public virtual ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
     }
 }

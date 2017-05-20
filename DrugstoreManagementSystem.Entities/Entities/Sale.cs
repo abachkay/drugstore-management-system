@@ -13,8 +13,11 @@ namespace DrugstoreManagementSystem.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SaleId { get; set; }
-        public DateTime SaleDate { get; set; }        
+        [Required]
+        public DateTime SaleDate { get; set; }
+        [Required]
         public decimal SaleTotal { get; set; }
+        [Required]
         public virtual ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
     }
 }

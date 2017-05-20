@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrugstoreManagementSystemContext.cs" />
-    <Compile Include="Entities\Manager.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineSaleDetail.cs" />
     <Compile Include="Entities\Sale.cs" />
@@ -72,6 +72,14 @@
     <Compile Include="Migrations\201705191737192_FixedColumnTypes.Designer.cs">
       <DependentUpon>201705191737192_FixedColumnTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705191929008_ChangedManagerToUser.cs" />
+    <Compile Include="Migrations\201705191929008_ChangedManagerToUser.Designer.cs">
+      <DependentUpon>201705191929008_ChangedManagerToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.cs" />
+    <Compile Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.Designer.cs">
+      <DependentUpon>201705200145256_DeleteExtraFieldsFromUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -94,6 +102,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705191737192_FixedColumnTypes.resx">
       <DependentUpon>201705191737192_FixedColumnTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191929008_ChangedManagerToUser.resx">
+      <DependentUpon>201705191929008_ChangedManagerToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.resx">
+      <DependentUpon>201705200145256_DeleteExtraFieldsFromUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
