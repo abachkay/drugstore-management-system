@@ -14,6 +14,7 @@ namespace DrugstoreManagementSystem.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SupplyId { get; set; }
         [Required]
+        [DataType("Date")]
         public DateTime SupplyDate { get; set; }
         [Required]
         public decimal SupplyTotal { get; set; }

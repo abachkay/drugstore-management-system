@@ -14,6 +14,7 @@ namespace DrugstoreManagementSystem.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SaleId { get; set; }
         [Required]
+        [DataType("Date")]
         public DateTime SaleDate { get; set; }
         [Required]
         public decimal SaleTotal { get; set; }        

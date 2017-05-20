@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrugstoreManagementSystem.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,14 @@ namespace DrugstoreManagementSystem.UI.Views
     /// Interaction logic for MedicinesView.xaml
     /// </summary>
     public partial class MedicinesView : UserControl
-    {
+    {        
         public MedicinesView()
         {
             InitializeComponent();
+            using (var unitOfWork = new UnitOfWork())
+            {
+                MedicinesDataGrid.ItemsSource = unitOfWork.MedicineRepository.GetAll.Select(m => new { Name = m.MedicineName, Producer = m.ProducerName, Price = m.Price, Prescription_Required = m.PrescriptionRequired }).ToList();
+            }
         }
     }
 }
