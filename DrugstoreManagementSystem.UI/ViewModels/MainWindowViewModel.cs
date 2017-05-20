@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DrugstoreManagementSystem.UI.ViewModels
 {
-    class MainWindowViewModel
+    class MainWindowViewModel: ViewModelBase
     {
+        public MedicinesViewModel MedicinesViewModel => new MedicinesViewModel();
+        public SalesViewModel SalesViewModel => new SalesViewModel();
+        public SuppliersViewModel SuppliersViewModel => new SuppliersViewModel();
+        public SuppliesViewModel SuppliesViewModel => new SuppliesViewModel();
+
     }
 }

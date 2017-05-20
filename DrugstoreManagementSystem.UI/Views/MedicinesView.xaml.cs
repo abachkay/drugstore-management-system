@@ -12,20 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DrugstoreManagementSystem.Entities;
-using DrugstoreManagementSystem.Repositories;
-using DrugstoreManagementSystem.UI.ViewModels;
 
-namespace DrugstoreManagementSystem.UI
+namespace DrugstoreManagementSystem.UI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MedicinesView.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {        
-        public MainWindow()
+    public partial class MedicinesView : UserControl
+    {
+        public MedicinesView()
         {
-            DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
     }

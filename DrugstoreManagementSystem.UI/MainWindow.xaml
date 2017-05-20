@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrugstoreManagementSystem.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" 
+        Height="350" 
+        Width="525"
+        WindowState="Maximized"
+        xmlns:UIViews="clr-namespace:DrugstoreManagementSystem.UI.Views">
     <Grid>
-        <DataGrid Name="DG" ItemsSource="{Binding Medicines}">
-
-        </DataGrid>
+        <TabControl>
+            <TabItem Header="Medicines">
+                <UIViews:MedicinesView DataContext="{Binding MedicinesViewModel}"></UIViews:MedicinesView>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
