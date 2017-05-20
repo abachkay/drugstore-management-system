@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace DrugstoreManagementSystem.Entities
 {
-    public class Sale
+    public class Supplier
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SaleId { get; set; }
+        public int SupplierId { get; set; }
         [Required]
-        public DateTime SaleDate { get; set; }
-        [Required]
-        public decimal SaleTotal { get; set; }        
-        public virtual ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
+        public string SupplierName { get; set; }        
+        public virtual ICollection<Supply> Supplies { get; set; }
     }
 }

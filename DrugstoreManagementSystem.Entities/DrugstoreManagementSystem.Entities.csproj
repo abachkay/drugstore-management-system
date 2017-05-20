@@ -48,6 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrugstoreManagementSystemContext.cs" />
+    <Compile Include="Entities\MedicineSupplyDetail.cs" />
+    <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\Supply.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineSaleDetail.cs" />
@@ -80,6 +83,14 @@
     <Compile Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.Designer.cs">
       <DependentUpon>201705200145256_DeleteExtraFieldsFromUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705200204544_FixedSomeColumnsInMedicine.cs" />
+    <Compile Include="Migrations\201705200204544_FixedSomeColumnsInMedicine.Designer.cs">
+      <DependentUpon>201705200204544_FixedSomeColumnsInMedicine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705200217364_AddedSupplyAndSuppliers.cs" />
+    <Compile Include="Migrations\201705200217364_AddedSupplyAndSuppliers.Designer.cs">
+      <DependentUpon>201705200217364_AddedSupplyAndSuppliers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -108,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.resx">
       <DependentUpon>201705200145256_DeleteExtraFieldsFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705200204544_FixedSomeColumnsInMedicine.resx">
+      <DependentUpon>201705200204544_FixedSomeColumnsInMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705200217364_AddedSupplyAndSuppliers.resx">
+      <DependentUpon>201705200217364_AddedSupplyAndSuppliers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
