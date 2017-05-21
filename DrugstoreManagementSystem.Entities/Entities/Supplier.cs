@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace DrugstoreManagementSystem.Entities
         public int SupplierId { get; set; }
         [Required]
         public string SupplierName { get; set; }        
-        public virtual ICollection<Supply> Supplies { get; set; }
+        public virtual ObservableCollection<Supply> Supplies { get; set; }
     }
 }

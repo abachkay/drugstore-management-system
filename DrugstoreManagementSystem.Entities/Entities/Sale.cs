@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace DrugstoreManagementSystem.Entities
         public DateTime SaleDate { get; set; }
         [Required]
         public decimal SaleTotal { get; set; }        
-        public virtual ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
+        public virtual ObservableCollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
     }
 }

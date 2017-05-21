@@ -1,5 +1,6 @@
 ﻿using DrugstoreManagementSystem.Entities;
 using DrugstoreManagementSystem.Repositories;
+using DrugstoreManagementSystem.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace DrugstoreManagementSystem.UI
             else
             {
                 var mainWindow = new MainWindow();
+                mainWindow.DataContext = new MainWindowViewModel();                
                 mainWindow.Show();
                 this.Close();
             }

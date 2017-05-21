@@ -15,9 +15,24 @@
          TextOptions.TextRenderingMode="Auto"
          Background="{DynamicResource MaterialDesignPaper}"
          FontFamily="{DynamicResource MaterialDesignFont}"
-        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz" >
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz" 
+        xmlns:Views="clr-namespace:DrugstoreManagementSystem.UI.Views">
     <Grid>
         <dragablz:TabablzControl>
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="Medicines">
+                <Views:MedicinesView DataContext="{Binding MedicinesViewModel}"></Views:MedicinesView>
+            </TabItem>
+            <TabItem Header="Suppliers">
+                <Views:SuppliersView DataContext="{Binding SuppliersViewModel}"></Views:SuppliersView>
+            </TabItem>
+            <TabItem Header="Supplies">
+                <Views:SuppliesView DataContext="{Binding SuppliesViewModel}"></Views:SuppliesView>
+            </TabItem>
+        </dragablz:TabablzControl>
+        <!--<dragablz:TabablzControl>
             <dragablz:TabablzControl.InterTabController>
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>
@@ -155,6 +170,6 @@
                     </TabItem>
                 </dragablz:TabablzControl>
             </TabItem>
-        </dragablz:TabablzControl>
+        </dragablz:TabablzControl>-->
     </Grid>
 </Window>
