@@ -1,7 +1,8 @@
 1. Run SQL Server Management Studio 2014 Express
 2. Run Create.sql from DrugstoreManagementSystem.Database
 3. Run Insert.sql from DrugstoreManagementSystem.Database
-4. Run Application from DrugstoreManagementSystem.UI
+4. Install application running DrugstoreManagementSystem.Install.msi from DrugstoreManagementSystem.Install/Debug
+5. Run application from desktop or start menu.
 
 Login: abachkay
 Password: 12345678

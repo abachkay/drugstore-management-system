@@ -28,9 +28,36 @@ namespace DrugstoreManagementSystem.UI
         {
             InitializeComponent();
             RefreshData();
-            MedicineSupplyDatePicker.SelectedDate = new DateTime(2000, 1, 1);
-            MedicineSaleDatePicker.SelectedDate = new DateTime(2000, 1, 1);
+            MedicineSupplyDatePicker.SelectedDate = DateTime.Now;
+            MedicineSaleDatePicker.SelectedDate = DateTime.Now;
         }
+
+        // Refreshing all data, bond to database
+        private void RefreshData()
+        {
+            using (var unitOfWork = new UnitOfWork())
+            {
+                MedicinesDataGrid.ItemsSource = unitOfWork.MedicineRepository.GetAll.Select(m => new { Name = m.MedicineName, Producer = m.ProducerName, Price = m.Price, Quantity = m.Quantity, Prescription_Required = m.PrescriptionRequired }).ToList();                
+                SuppliersDataGrid.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => new { Name = s.SupplierName }).ToList();
+                SuppliesDataGrid.ItemsSource = unitOfWork.SupplyRepository.GetAll.Select(s => new { Date = s.SupplyDate.Date.ToString("d MMM yyyy"), Total = s.SupplyTotal, Supplier = s.Supplier.SupplierName });
+                SalesDataGrid.ItemsSource = unitOfWork.SaleRepository.GetAll.Select(s => new { Date = s.SaleDate.Date.ToString("d MMM yyyy"), Total = s.SaleTotal });
+
+                MedicineSupplyComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
+                MedicineSaleComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
+
+                MedicineSupplySupplierComboBox.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => s.SupplierName);
+                MedicineSupplySupplierComboBox.SelectedIndex = 0;
+                MedicineSupplyComboBox.SelectedIndex = 0;
+                MedicineSaleComboBox.SelectedIndex = 0;
+
+                MedicinesDataGrid.SelectedIndex = 0;
+                SuppliersDataGrid.SelectedIndex = 0;
+                SuppliesDataGrid.SelectedIndex = 0;
+                SalesDataGrid.SelectedIndex = 0;
+            }
+        }
+
+        // Medicine tab operations
         private void OnlyAvailibleCheckBox_Click(object sender, RoutedEventArgs e)
         {
             using (var unitOfWork = new UnitOfWork())
@@ -46,7 +73,6 @@ namespace DrugstoreManagementSystem.UI
 
             }
         }
-
         private void AddMedicineButton_Click(object sender, RoutedEventArgs e)
         {
             decimal price = 0;
@@ -68,26 +94,11 @@ namespace DrugstoreManagementSystem.UI
             }
             RefreshData();
             MedicinesTabControl.SelectedIndex = 0;
-        }
-
-        private void RefreshData()
-        {
-            using (var unitOfWork = new UnitOfWork())
-            {
-                MedicinesDataGrid.ItemsSource = unitOfWork.MedicineRepository.GetAll.Select(m => new { Name = m.MedicineName, Producer = m.ProducerName, Price = m.Price, Quantity = m.Quantity, Prescription_Required = m.PrescriptionRequired }).ToList();
-                SuppliersDataGrid.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => new { Name = s.SupplierName }).ToList();
-                SuppliesDataGrid.ItemsSource = unitOfWork.SupplyRepository.GetAll.Select(s => new { Date = s.SupplyDate.Date.ToString("d MMM yyyy"), Total = s.SupplyTotal, Supplier = s.Supplier.SupplierName });
-                SalesDataGrid.ItemsSource = unitOfWork.SaleRepository.GetAll.Select(s => new { Date = s.SaleDate.Date.ToString("d MMM yyyy"), Total = s.SaleTotal });
-
-                MedicineSupplyComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
-                MedicineSaleComboBox.ItemsSource = unitOfWork.MedicineRepository.GetAvailible.Select(m => m.MedicineName).ToList();
-
-                MedicineSupplySupplierComboBox.ItemsSource = unitOfWork.SupplierRepository.GetAll.Select(s => s.SupplierName);
-                MedicineSupplySupplierComboBox.SelectedIndex = 0;
-                MedicineSupplyComboBox.SelectedIndex = 0;                
-                MedicineSaleComboBox.SelectedIndex = 0;                
-            }
-        }
+            MedicineNameTextBox.Text = "";
+            MedicineProducerNameTextBox.Text = "";
+            MedicinePriceTextBox.Text = "";
+            RequiresPrescriptionCheckbox.IsChecked = false;
+        }        
 
         private void MedicinesDeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -132,9 +143,11 @@ namespace DrugstoreManagementSystem.UI
             {
                 unitOfWork.MedicineRepository.ChangePrice(unitOfWork.MedicineRepository.GetAll.ToList()[MedicinesDataGrid.SelectedIndex], newPrice);
             }
+            MedicineNewPricefTextBox.Text = "";
             RefreshData();
         }
 
+        // Supplier tab operations
         private void SupplierAddTextBox_Click(object sender, RoutedEventArgs e)
         {
             if (SupplierNameTextBox.Text.Length == 0)
@@ -150,6 +163,7 @@ namespace DrugstoreManagementSystem.UI
             {
                 unitOfWork.SupplierRepository.Create(supplier);
             }
+            SupplierNameTextBox.Text = "";
             RefreshData();
             SuppliersTabControl.SelectedIndex = 0;
         }
@@ -161,14 +175,21 @@ namespace DrugstoreManagementSystem.UI
                 MessageBox.Show("You must select item first.");
                 return;
             }
-            using (var unitOfWork = new UnitOfWork())
+            try
             {
-                unitOfWork.SupplierRepository.Delete(unitOfWork.SupplierRepository.GetAll.ToList()[SuppliersDataGrid.SelectedIndex]);
+                using (var unitOfWork = new UnitOfWork())
+                {
+                    unitOfWork.SupplierRepository.Delete(unitOfWork.SupplierRepository.GetAll.ToList()[SuppliersDataGrid.SelectedIndex]);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("This supplier is still bond to some supply");
             }
             RefreshData();
         }
 
-
+        // Supplies tab operations.
         private void SuppliesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             using (var unitOfWork = new UnitOfWork())
@@ -205,6 +226,7 @@ namespace DrugstoreManagementSystem.UI
                     MedicineSupplyAddDataGrid.ItemsSource = MedicineSupplyDetails.Select(msd => new { Medicine = msd.Medicine.MedicineName, Quantity = msd.Quantity, }).ToList();
                 }
             }
+            MedicineSupplyQuantityTextBox.Text = "";
         }
 
         private void SupplyAddButton_Click(object sender, RoutedEventArgs e)
@@ -227,6 +249,7 @@ namespace DrugstoreManagementSystem.UI
                 supply.Supplier = supplier;
                 unitOfWork.SupplyRepository.Create(supply);
             }
+            MedicineSupplyDetails = new List<MedicineSupplyDetail>();
             RefreshData();
             SuppliesTabControl.SelectedIndex = 0;
         }
@@ -245,6 +268,7 @@ namespace DrugstoreManagementSystem.UI
             RefreshData();
         }
 
+        // Sales tab operations.
         private void MedicineSaleAddButton_Click(object sender, RoutedEventArgs e)
         {
             int quantity = 0;
@@ -267,10 +291,10 @@ namespace DrugstoreManagementSystem.UI
                         Quantity = quantity,
                         Medicine = medicine
                     });
-
+                    MedicineSaleQuantityTextBox.Text = "";
                     MedicineSaleAddDataGrid.ItemsSource = MedicineSaleDetails.Select(msd => new { Medicine = msd.Medicine.MedicineName, Quantity = msd.Quantity, }).ToList();
                 }
-            }            
+            }                        
         }
 
         private void SaleAddButton_Click(object sender, RoutedEventArgs e)
@@ -291,6 +315,7 @@ namespace DrugstoreManagementSystem.UI
             {
                 unitOfWork.SaleRepository.Create(sale);
             }
+            MedicineSaleDetails = new List<MedicineSaleDetail>();
             RefreshData();
             SalesTabControl.SelectedIndex = 0;
         }

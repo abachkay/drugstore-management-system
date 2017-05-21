@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DrugstoreManagementSystem.Entities;
+using System.Data.Entity;
 
 namespace DrugstoreManagementSystem.Repositories
 {
@@ -37,12 +38,13 @@ namespace DrugstoreManagementSystem.Repositories
             if (supply == null)
             {
                 throw new ArgumentNullException();
-            }
-            while (supply.MedicineSupplyDetails.Any())
-            {
-                supply.MedicineSupplyDetails.Remove(supply.MedicineSupplyDetails.First());
-            }
-            _context.Supplies.Remove(supply);
+            }              
+                while (supply.MedicineSupplyDetails.Any())
+                {  
+                    _context.Entry(supply.MedicineSupplyDetails.First()).State = EntityState.Deleted;
+                }
+                _context.SaveChanges();
+            _context.Entry(supply).State = EntityState.Deleted;
             _context.SaveChanges();
         }
     }

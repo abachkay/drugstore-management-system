@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrugstoreManagementSystem.UI"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Drugstore management system" 
         Height="350" 
         Width="525"
         WindowState="Maximized"                
@@ -14,17 +14,24 @@
          TextOptions.TextFormattingMode="Ideal"
          TextOptions.TextRenderingMode="Auto"
          Background="{DynamicResource MaterialDesignPaper}"
-         FontFamily="{DynamicResource MaterialDesignFont}">
+         FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz" >
     <Grid>
-        <TabControl>
+        <dragablz:TabablzControl>
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
             <TabItem Header="Medicines">
-                <TabControl Name="MedicinesTabControl">
+                <dragablz:TabablzControl Name="MedicinesTabControl">
+                    <dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController />
+                    </dragablz:TabablzControl.InterTabController>
                     <TabItem Header="Display">
                         <StackPanel>
                             <Grid>
                                 <CheckBox Name="OnlyAvailibleCheckBox" HorizontalAlignment="Left" Margin="5" Click="OnlyAvailibleCheckBox_Click">Only availible</CheckBox>
                                 <StackPanel>
-                                    <!--<Button Name="MedicinesDeleteButton" HorizontalAlignment="Right" Margin="5" Click="MedicinesDeleteButton_Click">Delete</Button>-->
+                                    <Button Name="MedicinesDeleteButton" HorizontalAlignment="Right" Margin="5" Click="MedicinesDeleteButton_Click">Delete</Button>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <TextBlock Margin="5" VerticalAlignment="Center">New price:</TextBlock>
                                         <TextBox Name="MedicineNewPricefTextBox" Margin="5" Width="50"></TextBox>
@@ -47,13 +54,16 @@
                             <Button Name="AddMedicineButton" Width="200" Margin="5" HorizontalAlignment="Left" Click="AddMedicineButton_Click">Add</Button>
                         </StackPanel>
                     </TabItem>
-                </TabControl>
+                </dragablz:TabablzControl>
             </TabItem>
             <TabItem Header="Suppliers">
-                <TabControl Name="SuppliersTabControl">
+                <dragablz:TabablzControl Name="SuppliersTabControl">
+                    <dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController />
+                    </dragablz:TabablzControl.InterTabController>
                     <TabItem Header="Display">
                         <StackPanel>
-                            <!--<Button Name="SupplierDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>-->
+                            <Button Name="SupplierDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplierDeleteButton_Click">Delete</Button>
                         <DataGrid Name="SuppliersDataGrid"></DataGrid>
                         </StackPanel>
                     </TabItem>
@@ -64,13 +74,16 @@
                             <Button Name="SupplierAddTextBox" Width="200" Margin="5" HorizontalAlignment="Left" Click="SupplierAddTextBox_Click">Add</Button>
                         </StackPanel>
                     </TabItem>
-                </TabControl>
+                </dragablz:TabablzControl>
             </TabItem>
             <TabItem Header="Supplies">
-                <TabControl Name="SuppliesTabControl">
+                <dragablz:TabablzControl Name="SuppliesTabControl">
+                    <dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController />
+                    </dragablz:TabablzControl.InterTabController>
                     <TabItem Header="Display">
                         <StackPanel>
-                            <!--<Button Name="SupplyDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>-->
+                            <Button Name="SupplyDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SupplyDeleteButton_Click">Delete</Button>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -102,13 +115,16 @@
                             <DataGrid Name="MedicineSupplyAddDataGrid" Grid.Column="1"></DataGrid>
                         </Grid>
                     </TabItem>
-                </TabControl>
+                </dragablz:TabablzControl>
             </TabItem>
             <TabItem Header="Sales">
-                <TabControl Name="SalesTabControl">
+                <dragablz:TabablzControl Name="SalesTabControl">
+                    <dragablz:TabablzControl.InterTabController>
+                        <dragablz:InterTabController />
+                    </dragablz:TabablzControl.InterTabController>
                     <TabItem Header="Display">
                         <StackPanel>
-                            <!--<Button Name="SaleDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SaleDeleteButton_Click">Delete</Button>-->
+                            <Button Name="SaleDeleteButton" Margin="5" HorizontalAlignment="Right" Click="SaleDeleteButton_Click">Delete</Button>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -137,8 +153,8 @@
                             <DataGrid Name="MedicineSaleAddDataGrid" Grid.Column="1"></DataGrid>
                         </Grid>
                     </TabItem>
-                </TabControl>
+                </dragablz:TabablzControl>
             </TabItem>
-        </TabControl>
+        </dragablz:TabablzControl>
     </Grid>
 </Window>

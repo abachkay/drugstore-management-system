@@ -11,8 +11,7 @@ INSERT INTO Sales VALUES
 ('2-2-2016',4400),
 ('2-4-2013',4440),
 ('5-2-2012',4420),
-('4-2-2016',4100),
-('7-4-2016',1400)
+('4-2-2016',4100)
 
 INSERT INTO Suppliers VALUES
 ('Arino store'),

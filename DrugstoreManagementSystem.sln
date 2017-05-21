@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugStoreManagementSystem.Databases", "DrugStoreManagementSystem.Databases\DrugStoreManagementSystem.Databases.csproj", "{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DrugstoreManagementSystem.Install", "DrugstoreManagementSystem.Install\DrugstoreManagementSystem.Install.vdproj", "{D8745D19-7932-4AD6-8889-4E151E342EBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8745D19-7932-4AD6-8889-4E151E342EBD}.Debug|Any CPU.ActiveCfg = Debug
+		{D8745D19-7932-4AD6-8889-4E151E342EBD}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

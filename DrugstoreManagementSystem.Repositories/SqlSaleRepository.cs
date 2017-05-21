@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DrugstoreManagementSystem.Entities;
+using System.Data.Entity;
 
 namespace DrugstoreManagementSystem.Repositories
 {
@@ -40,9 +41,9 @@ namespace DrugstoreManagementSystem.Repositories
             }
             while (sale.MedicineSaleDetails.Any())
             {
-                sale.MedicineSaleDetails.Remove(sale.MedicineSaleDetails.First());
+                _context.Entry(sale.MedicineSaleDetails.First()).State = EntityState.Deleted;                
             }
-            _context.Sales.Remove(sale);
+            _context.Entry(sale).State = EntityState.Deleted;
             _context.SaveChanges();
         }
     }

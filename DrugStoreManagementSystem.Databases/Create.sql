@@ -1,8 +1,8 @@
 ﻿IF DB_ID('DrugstoreManagementSystem') IS NULL
 	CREATE DATABASE DrugstoreManagementSystem
-
+GO
 USE DrugstoreManagementSystem     
-
+GO
 CREATE TABLE [dbo].[Medicines] (
     [MedicineId] [int] PRIMARY KEY NOT NULL IDENTITY,
     [MedicineName] [nvarchar](max) NOT NULL,
