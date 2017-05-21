@@ -252,20 +252,25 @@ namespace DrugstoreManagementSystem.UI
             {
                 MessageBox.Show("Quantity must be number");
                 return;
-            }
+            }            
             if (MedicineSaleComboBox.SelectedIndex >= 0)
             {
                 using (var unitOfWork = new UnitOfWork())
                 {
+                    var medicine = unitOfWork.MedicineRepository.GetAvailible.ToList()[MedicineSaleComboBox.SelectedIndex];
+                    if (medicine.Quantity<quantity)
+                    {
+                        MessageBox.Show("Not enough medicine for sale");
+                    }
                     MedicineSaleDetails.Add(new MedicineSaleDetail()
                     {
                         Quantity = quantity,
-                        Medicine = unitOfWork.MedicineRepository.GetAvailible.ToList()[MedicineSaleComboBox.SelectedIndex]
+                        Medicine = medicine
                     });
 
                     MedicineSaleAddDataGrid.ItemsSource = MedicineSaleDetails.Select(msd => new { Medicine = msd.Medicine.MedicineName, Quantity = msd.Quantity, }).ToList();
                 }
-            }
+            }            
         }
 
         private void SaleAddButton_Click(object sender, RoutedEventArgs e)

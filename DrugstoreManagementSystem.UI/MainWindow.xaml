@@ -8,8 +8,13 @@
         Title="MainWindow" 
         Height="350" 
         Width="525"
-        WindowState="Maximized"
-        xmlns:UIViews="clr-namespace:DrugstoreManagementSystem.UI.Views">
+        WindowState="Maximized"                
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <TabControl>
             <TabItem Header="Medicines">

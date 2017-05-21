@@ -22,5 +22,8 @@ C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSyste
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\LoginWindow.g.cs
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\LoginWindow.baml
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\MedicinesView.g.cs
-C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\MedicinesView.baml
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\MaterialDesignColors.dll
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\App.baml
