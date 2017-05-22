@@ -22,12 +22,13 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         #region Private fields
         private DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
         private string _areChangesSavedMessage = "Changes are saved";
-        private Brush _areChangesSavedMessageColor = System.Windows.Media.Brushes.Green;        
+        private Brush _areChangesSavedMessageColor = System.Windows.Media.Brushes.Green;
+        private int _selectedSupplyIndex = 0;
         #endregion
 
         #region Properties
         public ObservableCollection<Supply> Supplies { get; set; }
-        public ObservableCollection<MedicineSupplyDetail> Medicines { get; set; }
+        public ObservableCollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
         public string AreChangesSavedMessage
         {
             get
@@ -50,25 +51,59 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                 SetProperty(ref _areChangesSavedMessageColor, value);
             }
         }
+        public int SelectedSupplyIndex
+        {
+            get
+            {
+                return _selectedSupplyIndex;
+            }
+            set
+            {
+                SetProperty(ref _selectedSupplyIndex, value);
+            }
+        }
         public ICommand SaveChangesCommand
         {
             get
             {
                 return new RelayCommand(() =>
                 {
-                    try
-                    {
+                try
+                {
+                        foreach (var s in _context.Suppliers)
+                        {
+                            _context.Entry(s).State = EntityState.Modified;
+                        }
+                        //foreach (var s in Supplies)
+                        //{
+                        //    decimal total = 0;
+                        //    foreach (var msd in s.MedicineSupplyDetails)
+                        //    {
+                        //        if (_context.Entry(msd).State == EntityState.Added)
+                        //        {
+                        //            msd.Medicine.Quantity += msd.Quantity;
+                        //            _context.Entry(msd.Medicine).State = EntityState.Modified;
+                        //        }
+                        //        total += msd.Medicine.Price;
+                        //    }
+                        //    s.SupplyTotal = total;
+                        //    _context.Entry(s).State = EntityState.Modified;
+                        //}
+
                         _context.SaveChanges();
+                        CollectionViewSource.GetDefaultView(Supplies).Refresh();
                         AreChangesSavedMessage = "Changes are saved.";
                         AreChangesSavedMessageColor = Brushes.Green;
                     }
-                    catch (DbUpdateException)
+                    catch (DbUpdateException ex)
                     {
-                        MessageBox.Show("You can not delete some supplies, because they are connected to some supplies.\nDelete those supplies first, then you will be able to delete required suppliers.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    catch (DbEntityValidationException)
+                    catch (DbEntityValidationException ex)
                     {
-                        MessageBox.Show("Some data is not valid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 });
@@ -122,6 +157,29 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                 });
             }
         }
+        public ICommand SelectionChangedCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    _context.Supplies.Load();
+                    _context.Medicines.Load();
+                    Supplies = _context.Supplies.Local;
+                    if (_context.Supplies.Any() && SelectedSupplyIndex <= Supplies.Count() - 1 && SelectedSupplyIndex > -1)
+                    {
+                        MedicineSupplyDetails = Supplies.ToList().ElementAt(SelectedSupplyIndex).MedicineSupplyDetails;
+                        OnPropertyChanged(nameof(MedicineSupplyDetails));
+                    }
+                    if (SelectedSupplyIndex == Supplies.Count())
+                    {
+                        MedicineSupplyDetails = new ObservableCollection<MedicineSupplyDetail>();
+                        Supplies.Last().MedicineSupplyDetails = MedicineSupplyDetails;
+                        OnPropertyChanged(nameof(MedicineSupplyDetails));
+                    }
+                });
+            }
+        }
         #endregion
 
         #region Constructors
@@ -132,8 +190,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             Supplies = _context.Supplies.Local;
             if (_context.Suppliers.Any())
             {
-                var firstSupply = Supplies.First();
-                Medicines = _context.Supplies.First().MedicineSupplyDetails;
+                MedicineSupplyDetails = _context.Supplies.First().MedicineSupplyDetails;
             }
         }
         #endregion

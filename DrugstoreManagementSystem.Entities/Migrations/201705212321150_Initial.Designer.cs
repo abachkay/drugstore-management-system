@@ -7,13 +7,13 @@ namespace DrugstoreManagementSystem.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ManyToManyTry : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ManyToManyTry));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705200617016_ManyToManyTry"; }
+            get { return "201705212321150_Initial"; }
         }
         
         string IMigrationMetadata.Source

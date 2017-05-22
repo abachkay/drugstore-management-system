@@ -18,7 +18,7 @@
             <Button  Margin="5" Background="red" BorderBrush="Red" Command="{Binding DiscardChangesCommand}">Discard Changes</Button>
             <Button  Margin="5" Background="Green" BorderBrush="Green" Command="{Binding SaveChangesCommand}">Save Changes</Button>
         </StackPanel>
-        <DataGrid Grid.Row="1" Margin="5" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding Medicines}">
+        <DataGrid Grid.Row="1" Margin="5" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding Medicines}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding MedicineName}" />
                 <DataGridTextColumn Header="Producer" Binding="{Binding ProducerName}" />

@@ -7,13 +7,13 @@ namespace DrugstoreManagementSystem.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DeleteExtraFieldsFromUser : IMigrationMetadata
+    public sealed partial class m4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DeleteExtraFieldsFromUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(m4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705200145256_DeleteExtraFieldsFromUser"; }
+            get { return "201705220117392_m4"; }
         }
         
         string IMigrationMetadata.Source

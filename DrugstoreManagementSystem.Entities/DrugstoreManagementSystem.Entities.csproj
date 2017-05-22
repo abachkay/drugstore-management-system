@@ -55,53 +55,21 @@
     <Compile Include="Entities\Medicine.cs" />
     <Compile Include="Entities\MedicineSaleDetail.cs" />
     <Compile Include="Entities\Sale.cs" />
-    <Compile Include="Migrations\201705191543189_Initial.cs" />
-    <Compile Include="Migrations\201705191543189_Initial.Designer.cs">
-      <DependentUpon>201705191543189_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201705212321150_Initial.cs" />
+    <Compile Include="Migrations\201705212321150_Initial.Designer.cs">
+      <DependentUpon>201705212321150_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705191548465_AddedTablesSalesAndMedicine.cs" />
-    <Compile Include="Migrations\201705191548465_AddedTablesSalesAndMedicine.Designer.cs">
-      <DependentUpon>201705191548465_AddedTablesSalesAndMedicine.cs</DependentUpon>
+    <Compile Include="Migrations\201705212326234_m2.cs" />
+    <Compile Include="Migrations\201705212326234_m2.Designer.cs">
+      <DependentUpon>201705212326234_m2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705191622131_CreatedManagerTable.cs" />
-    <Compile Include="Migrations\201705191622131_CreatedManagerTable.Designer.cs">
-      <DependentUpon>201705191622131_CreatedManagerTable.cs</DependentUpon>
+    <Compile Include="Migrations\201705212333419_m3.cs" />
+    <Compile Include="Migrations\201705212333419_m3.Designer.cs">
+      <DependentUpon>201705212333419_m3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705191623400_CreatedManagerTableAgain.cs" />
-    <Compile Include="Migrations\201705191623400_CreatedManagerTableAgain.Designer.cs">
-      <DependentUpon>201705191623400_CreatedManagerTableAgain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705191737192_FixedColumnTypes.cs" />
-    <Compile Include="Migrations\201705191737192_FixedColumnTypes.Designer.cs">
-      <DependentUpon>201705191737192_FixedColumnTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705191929008_ChangedManagerToUser.cs" />
-    <Compile Include="Migrations\201705191929008_ChangedManagerToUser.Designer.cs">
-      <DependentUpon>201705191929008_ChangedManagerToUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.cs" />
-    <Compile Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.Designer.cs">
-      <DependentUpon>201705200145256_DeleteExtraFieldsFromUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705200204544_FixedSomeColumnsInMedicine.cs" />
-    <Compile Include="Migrations\201705200204544_FixedSomeColumnsInMedicine.Designer.cs">
-      <DependentUpon>201705200204544_FixedSomeColumnsInMedicine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705200217364_AddedSupplyAndSuppliers.cs" />
-    <Compile Include="Migrations\201705200217364_AddedSupplyAndSuppliers.Designer.cs">
-      <DependentUpon>201705200217364_AddedSupplyAndSuppliers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705200603189_ChangeDateTypes.cs" />
-    <Compile Include="Migrations\201705200603189_ChangeDateTypes.Designer.cs">
-      <DependentUpon>201705200603189_ChangeDateTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705200617016_ManyToManyTry.cs" />
-    <Compile Include="Migrations\201705200617016_ManyToManyTry.Designer.cs">
-      <DependentUpon>201705200617016_ManyToManyTry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705200914554_PhantomMigr.cs" />
-    <Compile Include="Migrations\201705200914554_PhantomMigr.Designer.cs">
-      <DependentUpon>201705200914554_PhantomMigr.cs</DependentUpon>
+    <Compile Include="Migrations\201705220117392_m4.cs" />
+    <Compile Include="Migrations\201705220117392_m4.Designer.cs">
+      <DependentUpon>201705220117392_m4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,41 +79,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705191543189_Initial.resx">
-      <DependentUpon>201705191543189_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705212321150_Initial.resx">
+      <DependentUpon>201705212321150_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705191548465_AddedTablesSalesAndMedicine.resx">
-      <DependentUpon>201705191548465_AddedTablesSalesAndMedicine.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705212326234_m2.resx">
+      <DependentUpon>201705212326234_m2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705191622131_CreatedManagerTable.resx">
-      <DependentUpon>201705191622131_CreatedManagerTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705212333419_m3.resx">
+      <DependentUpon>201705212333419_m3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705191623400_CreatedManagerTableAgain.resx">
-      <DependentUpon>201705191623400_CreatedManagerTableAgain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705191737192_FixedColumnTypes.resx">
-      <DependentUpon>201705191737192_FixedColumnTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705191929008_ChangedManagerToUser.resx">
-      <DependentUpon>201705191929008_ChangedManagerToUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705200145256_DeleteExtraFieldsFromUser.resx">
-      <DependentUpon>201705200145256_DeleteExtraFieldsFromUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705200204544_FixedSomeColumnsInMedicine.resx">
-      <DependentUpon>201705200204544_FixedSomeColumnsInMedicine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705200217364_AddedSupplyAndSuppliers.resx">
-      <DependentUpon>201705200217364_AddedSupplyAndSuppliers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705200603189_ChangeDateTypes.resx">
-      <DependentUpon>201705200603189_ChangeDateTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705200617016_ManyToManyTry.resx">
-      <DependentUpon>201705200617016_ManyToManyTry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705200914554_PhantomMigr.resx">
-      <DependentUpon>201705200914554_PhantomMigr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705220117392_m4.resx">
+      <DependentUpon>201705220117392_m4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

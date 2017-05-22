@@ -19,7 +19,9 @@ namespace DrugstoreManagementSystem.Entities
         public DateTime SupplyDate { get; set; }
         [Required]
         public decimal SupplyTotal { get; set; }
+        public int Supplier_SupplierId { get; set; }
         [Required]
+        [ForeignKey("Supplier_SupplierId")]
         public virtual Supplier Supplier { get; set; }
         public virtual ObservableCollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
     }

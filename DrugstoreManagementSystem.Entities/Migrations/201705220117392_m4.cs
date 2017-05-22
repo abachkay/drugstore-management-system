@@ -3,7 +3,7 @@ namespace DrugstoreManagementSystem.Entities.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class m4 : DbMigration
     {
         public override void Up()
         {

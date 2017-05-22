@@ -15,7 +15,9 @@ namespace DrugstoreManagementSystem.Entities
         public int MedicineSaleDetailId { get; set; }
         [Required]
         public virtual Sale Sale { get; set; }
+        public int Medicine_MedicineId { get; set; }
         [Required]
+        [ForeignKey("Medicine_MedicineId")]
         public virtual Medicine Medicine { get; set; }
         [Required]
         public int Quantity { get; set; }

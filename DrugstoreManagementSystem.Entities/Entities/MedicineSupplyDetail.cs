@@ -13,11 +13,11 @@ namespace DrugstoreManagementSystem.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MedicineSupplyDetailId { get; set; }
-        public int MedicineId { get; set; }
+        public int Medicine_MedicineId { get; set; }
         [Required]        
         public virtual Supply Supply { get; set; }
         [Required]
-        [ForeignKey("MedicineId")]
+        [ForeignKey("Medicine_MedicineId")]
         public virtual Medicine Medicine { get; set; }
         [Required]
         public int Quantity { get; set; }

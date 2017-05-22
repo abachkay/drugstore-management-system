@@ -7,13 +7,13 @@ namespace DrugstoreManagementSystem.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedTablesSalesAndMedicine : IMigrationMetadata
+    public sealed partial class m2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedTablesSalesAndMedicine));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(m2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705191548465_AddedTablesSalesAndMedicine"; }
+            get { return "201705212326234_m2"; }
         }
         
         string IMigrationMetadata.Source

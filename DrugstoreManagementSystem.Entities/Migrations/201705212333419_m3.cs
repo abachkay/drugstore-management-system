@@ -3,7 +3,7 @@ namespace DrugstoreManagementSystem.Entities.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FixedSomeColumnsInMedicine : DbMigration
+    public partial class m3 : DbMigration
     {
         public override void Up()
         {
