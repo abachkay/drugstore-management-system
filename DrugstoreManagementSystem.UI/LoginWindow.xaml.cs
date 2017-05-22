@@ -22,8 +22,7 @@ namespace DrugstoreManagementSystem.UI
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
     public partial class LoginWindow : Window
-    {
-        private readonly UnitOfWork _unitOfWork = new UnitOfWork();
+    {        
         public LoginWindow()
         {
             InitializeComponent();
@@ -33,17 +32,21 @@ namespace DrugstoreManagementSystem.UI
         {
             string login = LoginTextBox.Text;
             string password = PasswordBox.Password;
-            User user = _unitOfWork.UserRepository.GetUser(login, password);
-            if (user == null)
-            {                
-                MessageBox.Show("Invalid user name or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
+            using (var context = new DrugstoreManagementSystemContext())
             {
-                var mainWindow = new MainWindow();
-                mainWindow.DataContext = new MainWindowViewModel();                
-                mainWindow.Show();
-                this.Close();
+                var userRepository = new SqlUserRepository(context);
+                var user = userRepository.GetUser(login, password);
+                if (user == null)
+                {
+                    MessageBox.Show("Invalid user name or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    var mainWindow = new MainWindow();
+                    mainWindow.DataContext = new MainWindowViewModel();
+                    mainWindow.Show();
+                    this.Close();
+                }
             }
         }
     }

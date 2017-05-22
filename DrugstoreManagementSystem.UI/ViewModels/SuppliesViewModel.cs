@@ -80,22 +80,31 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                try
-                {
+                    try
+                    {
+                        if (MedicineSupplyDetails.Count <= 0)
+                        {
+                            throw new InvalidOperationException("There must be some medicines in supply.");
+                        }
                         foreach (var s in _context.Suppliers)
                         {
                             _context.Entry(s).State = EntityState.Modified;
                         }
                         foreach (var s in Supplies)
-                        {                          
+                        {
                             foreach (var msd in s.MedicineSupplyDetails)
                             {
                                 if (_context.Entry(msd).State == EntityState.Added)
                                 {
-                                    msd.Medicine.Quantity += msd.Quantity;
+
+                                    if (msd.Medicine == null)
+                                    {
+                                        throw new InvalidOperationException("There is no medicine with given id.");
+                                    }                                    
+                                    msd.Medicine.Quantity += msd.Quantity;                                    
                                     _context.Entry(msd.Medicine).State = EntityState.Modified;
-                                }                               
-                            }                                                    
+                                }
+                            }
                         }
                         _context.SaveChanges();
                         foreach (var s in Supplies)
@@ -118,15 +127,18 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                     }
                     catch (DbUpdateException ex)
                     {
-                        //MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     catch (DbEntityValidationException ex)
                     {
-                        //MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        MessageBox.Show(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //MessageBox.Show(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
+                    catch (InvalidOperationException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 });
             }
         }

@@ -25,6 +25,7 @@
         </StackPanel>
         <DataGrid Grid.Row="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding Medicines}">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding MedicineId}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding MedicineName}" />
                 <DataGridTextColumn Header="Producer" Binding="{Binding ProducerName}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" />

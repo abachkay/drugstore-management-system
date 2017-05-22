@@ -81,14 +81,22 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                 return new RelayCommand(() =>
                 {
                     try
-                    {                       
+                    {
+                        if (MedicineSaleDetails.Count <= 0)
+                        {
+                            throw new InvalidOperationException("There must be some medicines in sale.");
+                        }                       
                         foreach (var s in Sales)
                         {
                             foreach (var msd in s.MedicineSaleDetails)
                             {
                                 if (_context.Entry(msd).State == EntityState.Added)
                                 {
-                                    msd.Medicine.Quantity -= msd.Quantity;
+                                    if (msd.Medicine == null)
+                                    {
+                                        throw new InvalidOperationException("There is no medicine with given id.");
+                                    }
+                                    msd.Medicine.Quantity -= msd.Quantity;                                                                        
                                     if (msd.Medicine.Quantity < 0)
                                     {
                                         throw new InvalidOperationException("Not enough medicines for this sale.");
