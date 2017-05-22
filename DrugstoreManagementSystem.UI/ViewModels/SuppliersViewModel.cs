@@ -114,6 +114,18 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                 });
             }
         }
+        public ICommand AddNewItem
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Suppliers.Add(new Supplier());
+                    CollectionViewSource.GetDefaultView(Suppliers).Refresh();
+                    ChangesMadeCommand.Execute(null);
+                });
+            }
+        }
         #endregion
 
         #region Constructors

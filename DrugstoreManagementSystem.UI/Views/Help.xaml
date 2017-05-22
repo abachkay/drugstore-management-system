@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="DrugstoreManagementSystem.UI.Views.Help"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DrugstoreManagementSystem.UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap" FontSize="20" Margin="5">Welcome to Drugstore Management System!<LineBreak></LineBreak>
+                There are 4 tabs where you can manage data about medicines, suppliers, 
+                supplies and sales.<LineBreak></LineBreak>
+                On each tab you can add or edit required information.<LineBreak></LineBreak>
+                To add, press appropriate button, then type data into new field.<LineBreak></LineBreak>
+                To edit, just focus on required field and type new value.<LineBreak></LineBreak>
+                Changes are not saved momentarely, you have to press button Save changes, to save, or Discard changes to discard.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

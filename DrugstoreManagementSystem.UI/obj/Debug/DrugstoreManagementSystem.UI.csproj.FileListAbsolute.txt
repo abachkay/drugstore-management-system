@@ -58,3 +58,7 @@ C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSyste
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\MedicinesViev.baml
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\SuppliesView.g.cs
 C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\SuppliesView.baml
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\SalesView.g.cs
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\SalesView.baml
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\Help.g.cs
+C:\Users\abachkay\Documents\drugstore-management-system\DrugstoreManagementSystem.UI\obj\Debug\Views\Help.baml

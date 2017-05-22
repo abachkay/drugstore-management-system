@@ -17,19 +17,19 @@ using System.Windows.Media;
 
 namespace DrugstoreManagementSystem.UI.ViewModels
 {
-    public class SuppliesViewModel: ViewModelBase
+    public class SalesViewModel: ViewModelBase
     {
         #region Private fields
         private DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
         private string _areChangesSavedMessage = "Changes are saved";
         private Brush _areChangesSavedMessageColor = System.Windows.Media.Brushes.Green;
-        private int _selectedSupplyIndex = 0;
-        private Supply _selectedSupply = null;
+        private int _selectedSaleIndex = 0;
+        private Sale _selectedSale = null;
         #endregion
 
         #region Properties
-        public ObservableCollection<Supply> Supplies { get; set; }
-        public ObservableCollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
+        public ObservableCollection<Sale> Sales { get; set; }
+        public ObservableCollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
         public string AreChangesSavedMessage
         {
             get
@@ -52,26 +52,26 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                 SetProperty(ref _areChangesSavedMessageColor, value);
             }
         }
-        public int SelectedSupplyIndex
+        public int SelectedSaleIndex
         {
             get
             {
-                return _selectedSupplyIndex;
+                return _selectedSaleIndex;
             }
             set
             {
-                SetProperty(ref _selectedSupplyIndex, value);
+                SetProperty(ref _selectedSaleIndex, value);
             }
         }
-        public Supply SelectedSupply
+        public Sale SelectedSale
         {
             get
             {
-                return _selectedSupply;
+                return _selectedSale;
             }
             set
             {
-                SetProperty(ref _selectedSupply, value);
+                SetProperty(ref _selectedSale, value);
             }
         }
         public ICommand SaveChangesCommand
@@ -80,51 +80,55 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                try
-                {
-                        foreach (var s in _context.Suppliers)
+                    try
+                    {                       
+                        foreach (var s in Sales)
                         {
-                            _context.Entry(s).State = EntityState.Modified;
-                        }
-                        foreach (var s in Supplies)
-                        {                          
-                            foreach (var msd in s.MedicineSupplyDetails)
+                            foreach (var msd in s.MedicineSaleDetails)
                             {
                                 if (_context.Entry(msd).State == EntityState.Added)
                                 {
-                                    msd.Medicine.Quantity += msd.Quantity;
+                                    msd.Medicine.Quantity -= msd.Quantity;
+                                    if (msd.Medicine.Quantity < 0)
+                                    {
+                                        throw new InvalidOperationException("Not enough medicines for this sale.");
+                                    }
                                     _context.Entry(msd.Medicine).State = EntityState.Modified;
-                                }                               
-                            }                                                    
+                                }
+                            }
                         }
                         _context.SaveChanges();
-                        foreach (var s in Supplies)
+                        foreach (var s in Sales)
                         {
-                            if (s.SupplyTotal == 0)
+                            if (s.SaleTotal == 0)
                             {
                                 decimal total = 0;
-                                foreach (var msd in s.MedicineSupplyDetails)
+                                foreach (var msd in s.MedicineSaleDetails)
                                 {
                                     total += msd.Medicine.Price * msd.Quantity;
                                 }
-                                s.SupplyTotal = total;
+                                s.SaleTotal = total;
                                 _context.Entry(s).State = EntityState.Modified;
                             }
                         }
                         _context.SaveChanges();
-                        CollectionViewSource.GetDefaultView(Supplies).Refresh();
+                        CollectionViewSource.GetDefaultView(Sales).Refresh();
                         AreChangesSavedMessage = "Changes are saved.";
                         AreChangesSavedMessageColor = Brushes.Green;
                     }
                     catch (DbUpdateException ex)
                     {
-                        //MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     catch (DbEntityValidationException ex)
                     {
-                        //MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        MessageBox.Show(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //MessageBox.Show(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
                 });
@@ -158,7 +162,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                     }
                     try
                     {
-                        CollectionViewSource.GetDefaultView(Supplies).Refresh();
+                        CollectionViewSource.GetDefaultView(Sales).Refresh();
                     }
                     catch
                     {
@@ -183,13 +187,13 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             get
             {
                 return new RelayCommand(() =>
-                {                    
-                    _context.Medicines.Load();                    
-                    if (SelectedSupply != null)
+                {
+                    _context.Medicines.Load();
+                    if (SelectedSale != null)
                     {
-                        MedicineSupplyDetails = SelectedSupply.MedicineSupplyDetails;
-                        OnPropertyChanged(nameof(MedicineSupplyDetails));
-                    }                    
+                        MedicineSaleDetails = SelectedSale.MedicineSaleDetails;
+                        OnPropertyChanged(nameof(MedicineSaleDetails));
+                    }
                 });
             }
         }
@@ -199,8 +203,8 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    Supplies.Add(new Supply() { MedicineSupplyDetails = new ObservableCollection<MedicineSupplyDetail>() });
-                    CollectionViewSource.GetDefaultView(Supplies).Refresh();
+                    Sales.Add(new Sale() { MedicineSaleDetails = new ObservableCollection<MedicineSaleDetail>() });
+                    CollectionViewSource.GetDefaultView(Sales).Refresh();
                     ChangesMadeCommand.Execute(null);
                 });
             }
@@ -211,13 +215,13 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    if (SelectedSupply == null)
-                    {                        
-                        MessageBox.Show("Supply is not selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (SelectedSale == null)
+                    {
+                        MessageBox.Show("Sale is not selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-                    SelectedSupply.MedicineSupplyDetails.Add(new MedicineSupplyDetail());
-                    CollectionViewSource.GetDefaultView(MedicineSupplyDetails).Refresh();
+                    SelectedSale.MedicineSaleDetails.Add(new MedicineSaleDetail());
+                    CollectionViewSource.GetDefaultView(MedicineSaleDetails).Refresh();
                     ChangesMadeCommand.Execute(null);
                 });
             }
@@ -225,21 +229,21 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         #endregion
 
         #region Constructors
-        public SuppliesViewModel()
+        public SalesViewModel()
         {
-            _context.Supplies.Load();
+            _context.Sales.Load();
             _context.Medicines.Load();
-            Supplies = _context.Supplies.Local;
-            if (_context.Suppliers.Any())
+            Sales = _context.Sales.Local;
+            if (_context.Sales.Any())
             {
-                MedicineSupplyDetails = _context.Supplies.First().MedicineSupplyDetails;
+                MedicineSaleDetails = _context.Sales.First().MedicineSaleDetails;
             }
         }
         #endregion
 
         #region Destructors
         // Dispose context on closing
-        ~SuppliesViewModel()
+        ~SalesViewModel()
         {
             _context.Dispose();
         }

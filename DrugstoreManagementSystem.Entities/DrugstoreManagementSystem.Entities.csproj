@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201705220117392_m4.Designer.cs">
       <DependentUpon>201705220117392_m4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705221229501_AddedDefaultsTOMedicines.cs" />
+    <Compile Include="Migrations\201705221229501_AddedDefaultsTOMedicines.Designer.cs">
+      <DependentUpon>201705221229501_AddedDefaultsTOMedicines.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -90,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705220117392_m4.resx">
       <DependentUpon>201705220117392_m4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705221229501_AddedDefaultsTOMedicines.resx">
+      <DependentUpon>201705221229501_AddedDefaultsTOMedicines.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

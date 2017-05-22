@@ -16,6 +16,7 @@
          Background="{DynamicResource MaterialDesignPaper}"
          FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz" 
+          xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:Views="clr-namespace:DrugstoreManagementSystem.UI.Views">
     <Grid>
         <dragablz:TabablzControl>
@@ -30,6 +31,12 @@
             </TabItem>
             <TabItem Header="Supplies">
                 <Views:SuppliesView DataContext="{Binding SuppliesViewModel}"></Views:SuppliesView>
+            </TabItem>
+            <TabItem Header="Sales">
+                <Views:SalesView DataContext="{Binding SalesViewModel}"></Views:SalesView>
+            </TabItem>
+            <TabItem Header="Help">
+                <Views:Help></Views:Help>
             </TabItem>
         </dragablz:TabablzControl>
         <!--<dragablz:TabablzControl>

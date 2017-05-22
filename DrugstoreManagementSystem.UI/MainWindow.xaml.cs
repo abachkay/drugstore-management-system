@@ -36,6 +36,7 @@ namespace DrugstoreManagementSystem.UI
             //MedicineSaleDatePicker.SelectedDate = DateTime.Now;
         }
 
+  
         //// Refreshing all data, bond to database
         //private void RefreshData()
         //{
