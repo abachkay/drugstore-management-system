@@ -1,30 +1,29 @@
 ﻿using DrugstoreManagementSystem.Entities;
-using DrugstoreManagementSystem.Repositories;
 using DrugstoreManagementSystem.UI.Commands;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using DrugstoreManagementSystem.DataAccess.Context;
 
 namespace DrugstoreManagementSystem.UI.ViewModels
 {
     public class SuppliesViewModel: ViewModelBase
     {
         #region Private fields
-        private DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
+
+        private readonly DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
         private string _areChangesSavedMessage = "Changes are saved";
         private Brush _areChangesSavedMessageColor = System.Windows.Media.Brushes.Green;
         private int _selectedSupplyIndex = 0;
         private Supply _selectedSupply = null;
+        
         #endregion
 
         #region Properties
@@ -32,53 +31,29 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         public ObservableCollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
         public string AreChangesSavedMessage
         {
-            get
-            {
-                return _areChangesSavedMessage;
-            }
-            set
-            {
-                SetProperty(ref _areChangesSavedMessage, value);
-            }
+            get => _areChangesSavedMessage;
+            set => SetProperty(ref _areChangesSavedMessage, value);
         }
         public Brush AreChangesSavedMessageColor
         {
-            get
-            {
-                return _areChangesSavedMessageColor;
-            }
-            set
-            {
-                SetProperty(ref _areChangesSavedMessageColor, value);
-            }
+            get => _areChangesSavedMessageColor;
+            set => SetProperty(ref _areChangesSavedMessageColor, value);
         }
         public int SelectedSupplyIndex
         {
-            get
-            {
-                return _selectedSupplyIndex;
-            }
-            set
-            {
-                SetProperty(ref _selectedSupplyIndex, value);
-            }
+            get => _selectedSupplyIndex;
+            set => SetProperty(ref _selectedSupplyIndex, value);
         }
         public Supply SelectedSupply
         {
-            get
-            {
-                return _selectedSupply;
-            }
-            set
-            {
-                SetProperty(ref _selectedSupply, value);
-            }
+            get => _selectedSupply;
+            set => SetProperty(ref _selectedSupply, value);
         }
         public ICommand SaveChangesCommand
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(o =>
                 {
                     try
                     {
@@ -146,7 +121,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(o =>
                 {
                     var changedEntries = _context.ChangeTracker.Entries();
                     foreach (var entry in changedEntries)
@@ -183,7 +158,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(o =>
                 {
                     AreChangesSavedMessage = "There are unsaved changes.";
                     AreChangesSavedMessageColor = Brushes.Red;
@@ -194,12 +169,13 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(o =>
                 {                    
                     _context.Medicines.Load();                    
                     if (SelectedSupply != null)
                     {
-                        MedicineSupplyDetails = SelectedSupply.MedicineSupplyDetails;
+                        MedicineSupplyDetails =
+                            new ObservableCollection<MedicineSupplyDetail>(SelectedSupply.MedicineSupplyDetails);
                         OnPropertyChanged(nameof(MedicineSupplyDetails));
                     }                    
                 });
@@ -209,7 +185,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(o =>
                 {
                     Supplies.Add(new Supply() { MedicineSupplyDetails = new ObservableCollection<MedicineSupplyDetail>() });
                     CollectionViewSource.GetDefaultView(Supplies).Refresh();
@@ -221,7 +197,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
         {
             get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand(o =>
                 {
                     if (SelectedSupply == null)
                     {                        
@@ -244,7 +220,8 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             Supplies = _context.Supplies.Local;
             if (_context.Suppliers.Any())
             {
-                MedicineSupplyDetails = _context.Supplies.First().MedicineSupplyDetails;
+                MedicineSupplyDetails =
+                    new ObservableCollection<MedicineSupplyDetail>(_context.Supplies.First().MedicineSupplyDetails);
             }
         }
         #endregion

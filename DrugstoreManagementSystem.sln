@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.UI", "DrugstoreManagementSystem.UI\DrugstoreManagementSystem.UI.csproj", "{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.DataAccess", "DrugstoreManagementSystem.DataAccess\DrugstoreManagementSystem.DataAccess.csproj", "{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.Entities", "DrugstoreManagementSystem.Entities\DrugstoreManagementSystem.Entities.csproj", "{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.Repositories", "DrugstoreManagementSystem.Repositories\DrugstoreManagementSystem.Repositories.csproj", "{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugStoreManagementSystem.Databases", "DrugStoreManagementSystem.Databases\DrugStoreManagementSystem.Databases.csproj", "{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DrugstoreManagementSystem.Install", "DrugstoreManagementSystem.Install\DrugstoreManagementSystem.Install.vdproj", "{D8745D19-7932-4AD6-8889-4E151E342EBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.UI", "DrugstoreManagementSystem.UI\DrugstoreManagementSystem.UI.csproj", "{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8745D19-7932-4AD6-8889-4E151E342EBD}.Debug|Any CPU.ActiveCfg = Debug
-		{D8745D19-7932-4AD6-8889-4E151E342EBD}.Release|Any CPU.ActiveCfg = Release
+		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E191158-ECE7-471F-AAE1-D280FAE8066C}
 	EndGlobalSection
 EndGlobal

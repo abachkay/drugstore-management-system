@@ -1,45 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DrugstoreManagementSystem.UI.Commands
 {
     public class RelayCommand : ICommand
     {
+        private readonly Action<object> _execute;
+        private readonly Func<object, bool> _canExecute;
+
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
-        private Action methodToExecute;
-        private Func<bool> canExecuteEvaluator;
-        public RelayCommand(Action methodToExecute, Func<bool> canExecuteEvaluator)
+
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.methodToExecute = methodToExecute;
-            this.canExecuteEvaluator = canExecuteEvaluator;
+            _execute = execute;
+            _canExecute = canExecute;
         }
-        public RelayCommand(Action methodToExecute)
-            : this(methodToExecute, null)
-        {
-        }
+
         public bool CanExecute(object parameter)
         {
-            if (this.canExecuteEvaluator == null)
-            {
-                return true;
-            }
-            else
-            {
-                bool result = this.canExecuteEvaluator.Invoke();
-                return result;
-            }
+            return _canExecute == null || _canExecute(parameter);
         }
+
         public void Execute(object parameter)
         {
-            this.methodToExecute.Invoke();
+            _execute(parameter);
         }
     }
 }

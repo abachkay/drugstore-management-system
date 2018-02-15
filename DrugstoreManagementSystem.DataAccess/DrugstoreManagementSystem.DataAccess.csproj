@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}</ProjectGuid>
+    <ProjectGuid>{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DrugstoreManagementSystem.Entities</RootNamespace>
-    <AssemblyName>DrugstoreManagementSystem.Entities</AssemblyName>
+    <RootNamespace>DrugstoreManagementSystem.DataAccess</RootNamespace>
+    <AssemblyName>DrugstoreManagementSystem.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -48,14 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MedicineSupplyDetail.cs" />
-    <Compile Include="Supplier.cs" />
-    <Compile Include="Supply.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Medicine.cs" />
-    <Compile Include="MedicineSaleDetail.cs" />
-    <Compile Include="Sale.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\SqlUserRepository.cs" />
+    <Compile Include="Context\DrugstoreManagementSystemContext.cs" />
+    <Compile Include="Helpers\HashManager.cs" />
+    <Compile Include="Migrations\201802151641210_Initial.cs" />
+    <Compile Include="Migrations\201802151641210_Initial.Designer.cs">
+      <DependentUpon>201802151641210_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrugstoreManagementSystem.Entities\DrugstoreManagementSystem.Entities.csproj">
+      <Project>{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}</Project>
+      <Name>DrugstoreManagementSystem.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802151641210_Initial.resx">
+      <DependentUpon>201802151641210_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
