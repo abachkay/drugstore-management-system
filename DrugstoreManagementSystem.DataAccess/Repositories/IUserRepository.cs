@@ -1,6 +1,6 @@
 ﻿using DrugstoreManagementSystem.Entities;
 
-namespace DrugstoreManagementSystem.Repositories.Abstract
+namespace DrugstoreManagementSystem.DataAccess.Repositories
 {
     public interface IUserRepository
     {

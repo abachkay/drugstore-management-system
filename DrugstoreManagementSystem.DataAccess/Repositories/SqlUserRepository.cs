@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using DrugstoreManagementSystem.DataAccess.Context;
 using DrugstoreManagementSystem.Entities;
-using DrugstoreManagementSystem.Repositories.Abstract;
 using DrugstoreManagementSystem.Repositories.Helpers;
 
 namespace DrugstoreManagementSystem.Repositories.Concrete
