@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DrugstoreManagementSystem.UI.Views"
              mc:Ignorable="d" 
                xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="768" d:DesignWidth="1024">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="85"></RowDefinition>
@@ -60,6 +60,11 @@
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
+                                    <intr:Interaction.Triggers>
+                                        <intr:EventTrigger EventName="SelectionChanged">
+                                            <intr:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.ChangesMadeCommand}"/>
+                                        </intr:EventTrigger>
+                                    </intr:Interaction.Triggers>
                                 </ComboBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -69,7 +74,7 @@
                     <intr:EventTrigger EventName="CellEditEnding">
                         <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
                     </intr:EventTrigger>
-                    <intr:EventTrigger EventName="KeyUp">
+                    <intr:EventTrigger EventName="BeginningEdit">
                         <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
                     </intr:EventTrigger>
                 </intr:Interaction.Triggers>

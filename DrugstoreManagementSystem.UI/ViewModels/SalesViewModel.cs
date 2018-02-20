@@ -19,23 +19,8 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             _saleService = saleService;
             _medicineService = medicineService;
 
-            Sales = new ObservableCollection<Sale>(_saleService.GetSales());
-            Medicines = new ObservableCollection<Medicine>(_medicineService.GetMedicines());
-            SelectedSale = Sales.FirstOrDefault();
-        }           
-
-        private ObservableCollection<Sale> _sales;
-        public ObservableCollection<Sale> Sales
-        {
-            get => _sales;
-            set => SetProperty(ref _sales, value);
-        }
-
-        private ObservableCollection<MedicineSaleDetail> _medicineSaleDetails;
-        public ObservableCollection<MedicineSaleDetail> MedicineSaleDetails
-        {
-            get => _medicineSaleDetails;
-            set => SetProperty(ref _medicineSaleDetails, value);
+            Medicines = new ObservableCollection<Medicine>(_medicineService.GetMedicines(true));
+            Sales = new ObservableCollection<Sale>(_saleService.GetSales());            
         }
 
         private ObservableCollection<Medicine> _medicines;
@@ -45,17 +30,38 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             set => SetProperty(ref _medicines, value);
         }
 
+        private ObservableCollection<Sale> _sales;
+        public ObservableCollection<Sale> Sales
+        {
+            get => _sales;
+            set
+            {
+                SetProperty(ref _sales, value);
+                SelectedSale = Sales.FirstOrDefault();
+            }
+        }
+
         private Sale _selectedSale;
         public Sale SelectedSale
         {
             get => _selectedSale;
             set
             {
-                SetProperty(ref _selectedSale, value);
-                MedicineSaleDetails = new ObservableCollection<MedicineSaleDetail>(SelectedSale.MedicineSaleDetails);
-                SelectedMedicineSaleDetail = MedicineSaleDetails.FirstOrDefault();
+                SetProperty(ref _selectedSale, value);               
+                MedicineSaleDetails = SelectedSale == null ? null : new ObservableCollection<MedicineSaleDetail>(SelectedSale.MedicineSaleDetails);                
             }
         }
+
+        private ObservableCollection<MedicineSaleDetail> _medicineSaleDetails;
+        public ObservableCollection<MedicineSaleDetail> MedicineSaleDetails
+        {
+            get => _medicineSaleDetails;
+            set
+            {
+                SetProperty(ref _medicineSaleDetails, value);
+                SelectedMedicineSaleDetail = MedicineSaleDetails == null ? null : MedicineSaleDetails.FirstOrDefault();
+            }
+        }       
 
         private MedicineSaleDetail _selectedMedicineSaleDetail;
         public MedicineSaleDetail SelectedMedicineSaleDetail
@@ -64,7 +70,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             set
             {
                 SetProperty(ref _selectedMedicineSaleDetail, value);               
-                SelectedMedicine = Medicines.FirstOrDefault(m => m.MedicineId == _selectedMedicineSaleDetail.Medicine.MedicineId);                
+                SelectedMedicine = SelectedMedicineSaleDetail == null ? null : Medicines.FirstOrDefault(m => m.MedicineId == SelectedMedicineSaleDetail.Medicine.MedicineId);                
             }
         }
 
@@ -75,7 +81,10 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             set
             {
                 SetProperty(ref _selectedMedicine, value);
-                SelectedMedicineSaleDetail.Medicine = SelectedMedicine;
+                if (SelectedMedicineSaleDetail != null)
+                {
+                    SelectedMedicineSaleDetail.Medicine = SelectedMedicine;
+                }
             }
         }
 
@@ -103,7 +112,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             }
         }
 
-        public ICommand AddNewItem
+        public ICommand AddSale
         {
             get
             {
@@ -120,7 +129,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             }
         }
 
-        public ICommand AddNewSubItem
+        public ICommand AddMedicineToSale
         {
             get
             {

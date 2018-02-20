@@ -20,7 +20,7 @@ namespace DrugstoreManagementSystem.Services
         {
             using (var unitOfWork = _getUnitOfWork())
             {
-                return unitOfWork.SaleRepository.Get(includeProperties: $"MedicineSaleDetails.Medicine");                
+                return unitOfWork.SaleRepository.Get(includeProperties: $"{nameof(Sale.MedicineSaleDetails)}.{ nameof(MedicineSaleDetail.Medicine)}").ToList();                
             }
         }
 
