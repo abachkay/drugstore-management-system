@@ -39,11 +39,8 @@
                     <intr:EventTrigger EventName="CellEditEnding">
                         <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
                     </intr:EventTrigger>
-                    <intr:EventTrigger EventName="KeyUp">
+                    <intr:EventTrigger EventName="BeginningEdit">
                         <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
-                    </intr:EventTrigger>
-                    <intr:EventTrigger EventName="SelectionChanged">
-                        <intr:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
                     </intr:EventTrigger>
                 </intr:Interaction.Triggers>
             </DataGrid>
