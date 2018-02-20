@@ -1,41 +1,68 @@
 ﻿<UserControl x:Class="DrugstoreManagementSystem.UI.Views.SuppliersView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DrugstoreManagementSystem.UI.Views"
-             mc:Ignorable="d" 
-              xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             d:DesignHeight="300" d:DesignWidth="300">
-
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:DrugstoreManagementSystem.UI.Converters"
+             xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="85"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
             <Grid>
                 <TextBlock VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Left" Foreground="{Binding AreChangesSavedMessageColor}" Text="{Binding AreChangesSavedMessage}"></TextBlock>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button  Margin="5" Background="red" BorderBrush="Red" Command="{Binding DiscardChangesCommand}">Discard Changes</Button>
-                    <Button  Margin="5" Background="Green" BorderBrush="Green" Command="{Binding SaveChangesCommand}">Save Changes</Button>
+                    <Button  Margin="5" Background="red" BorderBrush="Red" Width="150" Command="{Binding DiscardChangesCommand}">Discard Changes</Button>
+                    <Button  Margin="5" Background="Green" BorderBrush="Green" Width="150" Command="{Binding SaveChangesCommand}">Save Changes</Button>
                 </StackPanel>
             </Grid>
-            <Button HorizontalAlignment="Left" Margin="5" Command="{Binding AddNewItem}">Add supplier</Button>
+            <StackPanel Orientation="Horizontal">
+                <Button HorizontalAlignment="Left" Margin="5" Command="{Binding AddNewItem}">Add supplier</Button>
+                <Button HorizontalAlignment="Left" Margin="5" Command="{Binding DeleteItem}">Delete supplier</Button>
+            </StackPanel>
         </StackPanel>
-        <DataGrid Grid.Row="1" Margin="5" CanUserDeleteRows="false" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding Suppliers}">
+        <DataGrid Grid.Row="1" Margin="5" CanUserDeleteRows="false" CanUserAddRows="False" AutoGenerateColumns="False" SelectedItem="{Binding SelectedSupplier}" ItemsSource="{Binding Suppliers}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding SupplierId}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding SupplierName}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Archived" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IncludeArchived, Converter={StaticResource BoolToVisibilityConverter}}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{StaticResource MaterialDesignCheckBox}" IsEnabled="False" IsChecked="{Binding IsArchived}" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.IncludeArchived, Converter={StaticResource BoolToVisibilityConverter}}"></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <intr:Interaction.Triggers>
                 <intr:EventTrigger EventName="CellEditEnding">
                     <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
                 </intr:EventTrigger>
-                <intr:EventTrigger EventName="KeyUp">
+                <intr:EventTrigger EventName="BeginningEdit">
                     <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
                 </intr:EventTrigger>
             </intr:Interaction.Triggers>
         </DataGrid>
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <Button  Margin="5" Width="150" Command="{Binding AddSupplier}">Add supplier</Button>
+                <Button  Margin="5" Width="150" Command="{Binding ArchiveSupplier}">Archive supplier</Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" FontSize="20" Margin="5">Include archived</TextBlock>
+                <ToggleButton IsChecked="{Binding IncludeArchived}"></ToggleButton>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

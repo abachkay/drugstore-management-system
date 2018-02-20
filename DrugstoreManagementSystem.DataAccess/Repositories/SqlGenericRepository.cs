@@ -1,5 +1,4 @@
-﻿using DrugstoreManagementSystem.DataAccess.Context;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,13 +8,13 @@ namespace DrugstoreManagementSystem.DataAccess.Repositories
 {
     public class SqlGenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected DrugstoreManagementSystemContext Context { get; }
+        protected DbContext Context { get; }
 
         protected DbSet<TEntity> DbSet { get; }
 
-        public SqlGenericRepository(DrugstoreManagementSystemContext context)
+        public SqlGenericRepository(DbContext context)
         {
-            Context = context;
+            Context = context;            
             DbSet = context.Set<TEntity>();
         }
 
@@ -35,7 +34,7 @@ namespace DrugstoreManagementSystem.DataAccess.Repositories
                 .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
             return orderBy?.Invoke(query).ToList() ?? query.ToList();
-        }
+        }     
 
         public virtual TEntity GetById(object id)
         {

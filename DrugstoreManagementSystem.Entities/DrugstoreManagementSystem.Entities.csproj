@@ -51,7 +51,6 @@
     <Compile Include="MedicineSupplyDetail.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="Supply.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="Medicine.cs" />
     <Compile Include="MedicineSaleDetail.cs" />
     <Compile Include="Sale.cs" />

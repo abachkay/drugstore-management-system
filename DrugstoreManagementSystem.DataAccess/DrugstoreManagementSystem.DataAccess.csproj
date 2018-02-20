@@ -48,13 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201802201131409_addedIsArchivedField.cs" />
+    <Compile Include="Migrations\201802201131409_addedIsArchivedField.Designer.cs">
+      <DependentUpon>201802201131409_addedIsArchivedField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802201439417_removedNonRequiredFields.cs" />
+    <Compile Include="Migrations\201802201439417_removedNonRequiredFields.Designer.cs">
+      <DependentUpon>201802201439417_removedNonRequiredFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\SqlGenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\SqlUserRepository.cs" />
     <Compile Include="Context\DrugstoreManagementSystemContext.cs" />
-    <Compile Include="Helpers\HashManager.cs" />
     <Compile Include="Migrations\201802151641210_Initial.cs" />
     <Compile Include="Migrations\201802151641210_Initial.Designer.cs">
       <DependentUpon>201802151641210_Initial.cs</DependentUpon>
@@ -76,6 +81,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802151641210_Initial.resx">
       <DependentUpon>201802151641210_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802201131409_addedIsArchivedField.resx">
+      <DependentUpon>201802201131409_addedIsArchivedField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802201439417_removedNonRequiredFields.resx">
+      <DependentUpon>201802201439417_removedNonRequiredFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,43 +1,52 @@
 ﻿using DrugstoreManagementSystem.Entities;
+using DrugstoreManagementSystem.Services;
 using DrugstoreManagementSystem.UI.Commands;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.Windows;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
-using DrugstoreManagementSystem.DataAccess.Context;
 
 namespace DrugstoreManagementSystem.UI.ViewModels
 {
-    public class SuppliersViewModel: ViewModelBase
+    public class SuppliersViewModel : ViewModelBase
     {
-        #region Private fields
+        private readonly ISupplierService _supplierService;
+        private ICollection<Supplier> _archivedSuppliers;
 
-        private DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
-
-        private string _areChangesSavedMessage = "Changes are saved";
-
-        private Brush _areChangesSavedMessageColor = System.Windows.Media.Brushes.Green;    
-        
-        #endregion
-
-        #region Properties
-
-        public ObservableCollection<Supplier> Suppliers { get; set; }
-
-        public string AreChangesSavedMessage
+        public SuppliersViewModel(ISupplierService supplierService)
         {
-            get => _areChangesSavedMessage;
-            set => SetProperty(ref _areChangesSavedMessage, value);
+            _supplierService = supplierService;
+            _archivedSuppliers = new List<Supplier>();
+
+            IncludeArchived = false;
         }
 
-        public Brush AreChangesSavedMessageColor
+        private bool _includeArchived;
+        public bool IncludeArchived
         {
-            get => _areChangesSavedMessageColor;
-            set => SetProperty(ref _areChangesSavedMessageColor, value);
+            get => _includeArchived;
+            set
+            {
+                SetProperty(ref _includeArchived, value);
+
+                Suppliers = new ObservableCollection<Supplier>(_supplierService.GetSuppliers(IncludeArchived));
+                SelectedSupplier = Suppliers.FirstOrDefault();
+            }
+        }
+        
+        private ObservableCollection<Supplier> _suppliers;
+        public ObservableCollection<Supplier> Suppliers
+        {
+            get => _suppliers;
+            set => SetProperty(ref _suppliers, value);
+        }
+
+        private Supplier _selectedSupplier;
+        public Supplier SelectedSupplier
+        {
+            get => _selectedSupplier;
+            set => SetProperty(ref _selectedSupplier, value);
         }
 
         public ICommand SaveChangesCommand
@@ -46,21 +55,9 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             {
                 return new RelayCommand(o =>
                 {
-                    try
-                    {
-                        _context.SaveChanges();
-                        AreChangesSavedMessage = "Changes are saved.";
-                        AreChangesSavedMessageColor = Brushes.Green;
-                    }
-                    catch (DbUpdateException)
-                    {
-                        MessageBox.Show("You can not delete some suppliers, because they are connected to some supplies.\nDelete those supplies first, then you will be able to delete required suppliers.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    catch (DbEntityValidationException)
-                    {
-                        MessageBox.Show("Some data is not valid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-
+                    _supplierService.SaveChanges(Suppliers.ToList().Concat(_archivedSuppliers));
+                    UpdateChangesStatus(true);
+                    _archivedSuppliers.Clear();
                 });
             }
         }
@@ -71,71 +68,44 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             {
                 return new RelayCommand(o =>
                 {
-                    var changedEntries = _context.ChangeTracker.Entries();
-                    foreach (var entry in changedEntries)
+                    Suppliers = new ObservableCollection<Supplier>(_supplierService.GetSuppliers(IncludeArchived));
+                    UpdateChangesStatus(true);
+                });
+            }
+        }
+
+        public ICommand AddSupplier
+        {
+            get
+            {
+                return new RelayCommand(o =>
+                {
+                    Suppliers.Add(new Supplier()
                     {
-                        switch (entry.State)
-                        {
-                            case EntityState.Modified:
-                                entry.State = EntityState.Unchanged;
-                                break;
-                            case EntityState.Added:
-                                entry.State = EntityState.Detached;
-                                break;
-                            case EntityState.Deleted:
-                                entry.State = EntityState.Modified;
-                                entry.State = EntityState.Unchanged;
-                                break;                           
-                        }
-                        AreChangesSavedMessage = "Changes are saved.";
-                        AreChangesSavedMessageColor = Brushes.Green;
+                        SupplierName = "New supplier"
+                    });
+
+                    UpdateChangesStatus(false);
+                });
+            }
+        }
+
+        public ICommand ArchiveSupplier
+        {
+            get
+            {
+                return new RelayCommand(o =>
+                {
+                    _supplierService.ArchiveSupplier(SelectedSupplier);
+                    if (!IncludeArchived)
+                    {
+                        _archivedSuppliers.Add(SelectedSupplier);
+                        Suppliers.Remove(SelectedSupplier);
                     }
                     CollectionViewSource.GetDefaultView(Suppliers).Refresh();
+                    UpdateChangesStatus(false);
                 });
             }
         }
-
-        public ICommand ChangesMadeCommand
-        {
-            get
-            {
-                return new RelayCommand(o =>
-                {
-                    AreChangesSavedMessage = "There are unsaved changes.";
-                    AreChangesSavedMessageColor = Brushes.Red;
-                });
-            }
-        }
-
-        public ICommand AddNewItem
-        {
-            get
-            {
-                return new RelayCommand(o =>
-                {
-                    Suppliers.Add(new Supplier());
-                    CollectionViewSource.GetDefaultView(Suppliers).Refresh();
-                    ChangesMadeCommand.Execute(null);
-                });
-            }
-        }
-
-        #endregion
-
-        #region Constructors
-        public SuppliersViewModel()
-        {
-            _context.Suppliers.Load();
-            Suppliers = _context.Suppliers.Local;
-        }
-        #endregion
-
-        #region Destructors
-        // Dispose context on closing
-        ~SuppliersViewModel()
-        {
-            _context.Dispose();
-        }
-        #endregion
     }
 }

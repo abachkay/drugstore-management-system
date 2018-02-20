@@ -1,41 +1,47 @@
-﻿using System;
-using DrugstoreManagementSystem.DataAccess.Context;
-using DrugstoreManagementSystem.Entities;
+﻿using DrugstoreManagementSystem.Entities;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace DrugstoreManagementSystem.DataAccess.Repositories
 {
-    public class SqlUnitOfWork : IDisposable, IUnitOfWork
-    {
-        private readonly DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
-        private IRepository<Medicine> _medicineRepository;
-        private IRepository<Supply> _supplyRepository;
-        private IRepository<Sale> _saleRepository;
-        private IRepository<Supplier> _supplierRepository;
-        private IRepository<MedicineSaleDetail> _medicineSaleDetailRepository;
-        private IRepository<MedicineSupplyDetail> _medicineSupplyDetailRepository;
+    public class SqlUnitOfWork : IUnitOfWork
+    {        
+        public SqlUnitOfWork(DbContext context)
+        {
+            Context = context;
+            MedicineRepository = new SqlGenericRepository<Medicine>(context);
+            SupplyRepository = new SqlGenericRepository<Supply>(context);
+            SupplierRepository = new SqlGenericRepository<Supplier>(context);
+            SaleRepository = new SqlGenericRepository<Sale>(context);
+            MedicineSaleDetailRepository = new SqlGenericRepository<MedicineSaleDetail>(context);
+            MedicineSupplyDetailRepository = new SqlGenericRepository<MedicineSupplyDetail>(context);
+        }
 
-        public IRepository<Medicine> MedicineRepository =>
-            _medicineRepository ?? (_medicineRepository = new SqlGenericRepository<Medicine>(_context));
+        public IEnumerable<Sale> GetSales()
+        {
+            return Context.Set<Sale>().ToList();
+        }
 
-        public IRepository<Supply> SupplyRepository =>
-            _supplyRepository ?? (_supplyRepository = new SqlGenericRepository<Supply>(_context));
+        public DbContext Context { get; }
 
-        public IRepository<Sale> SaleRepository =>
-            _saleRepository ?? (_saleRepository = new SqlGenericRepository<Sale>(_context));
+        public IRepository<Medicine> MedicineRepository { get; }
 
-        public IRepository<Supplier> SupplierRepository =>
-            _supplierRepository ?? (_supplierRepository = new SqlGenericRepository<Supplier>(_context));
+        public IRepository<Supply> SupplyRepository { get; }
 
-        public IRepository<MedicineSaleDetail> MedicineSaleDetailRepository =>
-            _medicineSaleDetailRepository ?? (_medicineSaleDetailRepository = new SqlGenericRepository<MedicineSaleDetail>(_context));
+        public IRepository<Sale> SaleRepository { get; }
 
-        public IRepository<MedicineSupplyDetail> MedicineSupplyDetailRepository =>
-            _medicineSupplyDetailRepository ?? (_medicineSupplyDetailRepository = new SqlGenericRepository<MedicineSupplyDetail>(_context));
+        public IRepository<Supplier> SupplierRepository { get; }
+
+        public IRepository<MedicineSaleDetail> MedicineSaleDetailRepository { get; }
+
+        public IRepository<MedicineSupplyDetail> MedicineSupplyDetailRepository { get; }
 
 
         public void Save()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
 
         #region IDisposable implementation
@@ -48,7 +54,7 @@ namespace DrugstoreManagementSystem.DataAccess.Repositories
             {
                 if (disposing)
                 {
-                    _context.Dispose();
+                    Context.Dispose();
                 }
             }
             _disposed = true;

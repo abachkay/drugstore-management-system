@@ -11,7 +11,7 @@ namespace DrugstoreManagementSystem.Entities
     
         public decimal SupplyTotal { get; set; }        
     
-        public Supplier Supplier { get; set; }
+        public Supplier Supplier { get; set; }        
 
         public ICollection<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrugstoreManagementSystem.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,6 +21,6 @@ namespace DrugstoreManagementSystem.DataAccess.Repositories
 
         void Delete(TEntity entityToDelete);
 
-        void Update(TEntity entityToUpdate);
+        void Update(TEntity entityToUpdate);        
     }
 }

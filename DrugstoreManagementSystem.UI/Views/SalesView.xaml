@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="0" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" SelectedItem="{Binding SelectedSale}" ItemsSource="{Binding Sales}">
+            <DataGrid Grid.Column="0" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedItem="{Binding SelectedSale}" ItemsSource="{Binding Sales}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" Binding="{Binding Path=SaleDate, StringFormat=d}" />
                     <DataGridTextColumn IsReadOnly="True" Header="Total (UAH)" Binding="{Binding SaleTotal}" />
@@ -47,10 +47,26 @@
                     </intr:EventTrigger>
                 </intr:Interaction.Triggers>
             </DataGrid>
-            <DataGrid Grid.Column="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding MedicineSaleDetails}">
+            <DataGrid Grid.Column="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedItem="{Binding SelectedMedicineSaleDetail}" ItemsSource="{Binding MedicineSaleDetails}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                    <DataGridTextColumn Header="Medicine Id" Binding="{Binding Medicine_MedicineId}" />
+                    <DataGridTemplateColumn Header="Medicine">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.Medicines}" 
+                                          SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.SelectedMedicine}" >
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding MedicineName}"></TextBlock>
+                                                <TextBlock Text="{Binding ProducerName, StringFormat=' ({0})'}"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
                 <intr:Interaction.Triggers>
                     <intr:EventTrigger EventName="CellEditEnding">

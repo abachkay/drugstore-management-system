@@ -14,7 +14,9 @@ namespace DrugstoreManagementSystem.Entities
      
         public decimal Price { get; set; }
      
-        public int Quantity { get; set; }        
+        public int Quantity { get; set; }       
+        
+        public bool IsArchived { get; set; }
 
         public ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
 

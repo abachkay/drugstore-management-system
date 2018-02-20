@@ -9,8 +9,8 @@ namespace DrugstoreManagementSystem.Entities
       
         public DateTime SaleDate { get; set; }
     
-        public decimal SaleTotal { get; set; }    
-        
+        public decimal SaleTotal { get; set; }        
+
         public ICollection<MedicineSaleDetail> MedicineSaleDetails { get; set; }
     }
 }

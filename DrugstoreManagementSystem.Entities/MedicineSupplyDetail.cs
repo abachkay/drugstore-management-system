@@ -8,6 +8,6 @@
       
         public Medicine Medicine { get; set; }
        
-        public int Quantity { get; set; }
+        public int Quantity { get; set; }        
     }
 }

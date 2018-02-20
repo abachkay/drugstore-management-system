@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace DrugstoreManagementSystem.UI
 {
+    /// <inheritdoc />
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

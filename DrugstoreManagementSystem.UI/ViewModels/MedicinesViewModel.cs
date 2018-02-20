@@ -1,135 +1,113 @@
 ﻿using DrugstoreManagementSystem.Entities;
+using DrugstoreManagementSystem.Services;
 using DrugstoreManagementSystem.UI.Commands;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.Windows;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
-using DrugstoreManagementSystem.DataAccess.Context;
 
 namespace DrugstoreManagementSystem.UI.ViewModels
 {
     public class MedicinesViewModel: ViewModelBase
     {
-        #region Private fields
+        private readonly IMedicineService _medicineService;
+        private ICollection<Medicine> _archivedMedicines; 
 
-        private readonly DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
-
-        private string _areChangesSavedMessage = "Changes are saved";
-
-        private Brush _areChangesSavedMessageColor = Brushes.Green;
-        
-        #endregion
-
-        #region Properties
-        public ObservableCollection<Medicine> Medicines { get; set; }
-        public string AreChangesSavedMessage
+        public MedicinesViewModel(IMedicineService medicineService)
         {
-            get => _areChangesSavedMessage;
-            set => SetProperty(ref _areChangesSavedMessage, value);
-        }
-        public Brush AreChangesSavedMessageColor
+            _medicineService = medicineService;
+            _archivedMedicines = new List<Medicine>();
+
+            IncludeArchived = false;
+        }        
+       
+        private bool _includeArchived;
+        public bool IncludeArchived
         {
-            get => _areChangesSavedMessageColor;
-            set => SetProperty(ref _areChangesSavedMessageColor, value);
+            get => _includeArchived;
+            set
+            {
+                SetProperty(ref _includeArchived, value);
+
+                Medicines = new ObservableCollection<Medicine>(_medicineService.GetMedicines(IncludeArchived));
+                SelectedMedicine = Medicines.FirstOrDefault();
+            }
         }
+
+        private ObservableCollection<Medicine> _medicines;
+        public ObservableCollection<Medicine> Medicines
+        {
+            get => _medicines;
+            set => SetProperty(ref _medicines, value);
+        }
+
+        private Medicine _selectedMedicine;
+        public Medicine SelectedMedicine
+        {
+            get => _selectedMedicine;
+            set => SetProperty(ref _selectedMedicine, value);
+        }
+
         public ICommand SaveChangesCommand
         {
             get
             {
                 return new RelayCommand(o =>
-                {
-                    try
-                    {
-                        _context.SaveChanges();
-                        AreChangesSavedMessage = "Changes are saved.";
-                        AreChangesSavedMessageColor = Brushes.Green;
-                    }
-                    catch (DbUpdateException)
-                    {
-                        MessageBox.Show("You can not delete some medicines, because they are connected to some sale or supply.\nDelete those sales or supplies first, then you will be able to delete required medicines.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                        
-                    }      
-                    catch (DbEntityValidationException)
-                    {
-                        MessageBox.Show("Some data is not valid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                                                      
+                {                                        
+                    _medicineService.SaveChanges(Medicines.ToList().Concat(_archivedMedicines));                                                                                             
+                    UpdateChangesStatus(true);
+                    _archivedMedicines.Clear();
                 });
             }
         }
+
         public ICommand DiscardChangesCommand
         {
             get
             {
                 return new RelayCommand(o =>
-                {            
-                    var changedEntries = _context.ChangeTracker.Entries();
-                    foreach (var entry in changedEntries)
+                {                  
+                    Medicines = new ObservableCollection<Medicine>(_medicineService.GetMedicines(IncludeArchived));                    
+                    UpdateChangesStatus(true);
+                });
+            }
+        }     
+
+        public ICommand AddMedicine
+        {
+            get
+            {
+                return new RelayCommand(o =>
+                {
+                    Medicines.Add(new Medicine()
                     {
-                        switch (entry.State)
-                        {
-                            case EntityState.Modified:
-                                entry.State = EntityState.Unchanged;
-                                break;
-                            case EntityState.Added:
-                                entry.State = EntityState.Detached;
-                                break;
-                            case EntityState.Deleted:
-                                entry.State = EntityState.Modified; 
-                                entry.State = EntityState.Unchanged;                                
-                                break;
-                            default: break;
-                        }                                                         
-                        AreChangesSavedMessage = "Changes are saved.";
-                        AreChangesSavedMessageColor = Brushes.Green;                            
+                        MedicineName = "New medicine",
+                        Price = 1,
+                        ProducerName = "Producer",
+                        Quantity = 1,
+                    });
+                    UpdateChangesStatus(false);
+                });
+            }
+        }
+
+        public ICommand ArchiveMedicine
+        {
+            get
+            {
+                return new RelayCommand(o =>
+                {
+                    _medicineService.ArchiveMedicine(SelectedMedicine);                    
+                    if (!IncludeArchived)
+                    {
+                        _archivedMedicines.Add(SelectedMedicine);
+                        Medicines.Remove(SelectedMedicine);
                     }
-                    CollectionViewSource.GetDefaultView(Medicines).Refresh(); 
-                });
-            }
-        }
-        public ICommand ChangesMadeCommand
-        {
-            get
-            {
-                return new RelayCommand(o =>
-                {
-                    AreChangesSavedMessage = "There are unsaved changes.";
-                    AreChangesSavedMessageColor = Brushes.Red;
-                });
-            }
-        }
-        public ICommand AddNewItem
-        {
-            get
-            {
-                return new RelayCommand(o =>
-                {
-                    Medicines.Add(new Medicine());
                     CollectionViewSource.GetDefaultView(Medicines).Refresh();
-                    ChangesMadeCommand.Execute(null);
+                    UpdateChangesStatus(false);
                 });
             }
-        }
-        
-        #endregion
-
-        #region Constructors
-        public MedicinesViewModel()
-        {         
-            _context.Medicines.Load();
-            Medicines = _context.Medicines.Local;                    
-        }
-        #endregion
-
-        #region Destructors
-        // Dispose context on closing
-        ~MedicinesViewModel()
-        {
-            _context.Dispose();
-        }
-        #endregion
+        }           
     }
 }

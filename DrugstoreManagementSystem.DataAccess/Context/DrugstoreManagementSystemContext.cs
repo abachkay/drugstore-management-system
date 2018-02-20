@@ -1,6 +1,7 @@
 ﻿using DrugstoreManagementSystem.Entities;
 using System;
 using System.Data.Entity;
+using System.IO;
 
 namespace DrugstoreManagementSystem.DataAccess.Context
 {
@@ -8,7 +9,12 @@ namespace DrugstoreManagementSystem.DataAccess.Context
     {
         public DrugstoreManagementSystemContext() : base("DefaultConnection")
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory", Environment.CurrentDirectory);
+            var dataDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugstoreManagementSystem");
+            if (!Directory.Exists(dataDirectory))
+            {
+                Directory.CreateDirectory(dataDirectory);
+            }
+            AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugstoreManagementSystem"));            
             Database.SetInitializer(new CreateDatabaseIfNotExists<DrugstoreManagementSystemContext>());
         }
 
@@ -46,19 +52,6 @@ namespace DrugstoreManagementSystem.DataAccess.Context
             medicineSalsDetails.Property(msd => msd.Quantity).IsRequired();            
             medicineSalsDetails.HasRequired(m => m.Medicine).WithMany(msd => msd.MedicineSaleDetails);
             medicineSalsDetails.HasRequired(m => m.Sale).WithMany(msd => msd.MedicineSaleDetails);            
-        }
-
-        public virtual DbSet<Medicine> Medicines { get; set; }
-
-        public virtual DbSet<Sale> Sales { get; set; }
-        
-        public virtual DbSet<Supplier> Suppliers { get; set; }
-
-        public virtual DbSet<Supply> Supplies { get; set; }
-
-        public virtual DbSet<MedicineSaleDetail> MedicineSaleDetails { get; set; }
-
-        public virtual DbSet<MedicineSupplyDetail> MedicineSupplyDetails { get; set; }
-        public object Users { get; set; }
+        }     
     }
 }

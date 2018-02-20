@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using DrugstoreManagementSystem.UI.Commands;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DrugstoreManagementSystem.UI.ViewModels
 {
@@ -24,6 +27,36 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             OnPropertyChanged(propertyName);
 
             return true;
+        }
+
+        private string _areChangesSavedMessage = "Changes are saved";
+        public string AreChangesSavedMessage
+        {
+            get => _areChangesSavedMessage;
+            set => SetProperty(ref _areChangesSavedMessage, value);
+        }
+
+        private Brush _areChangesSavedMessageColor = Brushes.Green;
+        public Brush AreChangesSavedMessageColor
+        {
+            get => _areChangesSavedMessageColor;
+            set => SetProperty(ref _areChangesSavedMessageColor, value);
+        }
+        public ICommand ChangesMadeCommand
+        {
+            get
+            {
+                return new RelayCommand(o =>
+                {
+                    UpdateChangesStatus(false);
+                });
+            }
+        }
+
+        public void UpdateChangesStatus(bool areChangesSaved)
+        {
+            AreChangesSavedMessage = areChangesSaved ? "Changes are saved." : "There are unsaved changes.";
+            AreChangesSavedMessageColor = areChangesSaved ? Brushes.Green : Brushes.Red;
         }
     } 
 }

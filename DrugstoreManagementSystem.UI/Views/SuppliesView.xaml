@@ -31,11 +31,10 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="0" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" SelectedItem="{Binding SelectedSupply}" ItemsSource="{Binding Supplies}">
+            <DataGrid Grid.Column="0" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="{Binding SelectedSupplyIndex}" ItemsSource="{Binding Supplies}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" Binding="{Binding Path=SupplyDate, StringFormat=d}" />
                     <DataGridTextColumn IsReadOnly="True" Header="Total (UAH)" Binding="{Binding SupplyTotal}" />
-                    <DataGridTextColumn Header="Supplier Id" Binding="{Binding Supplier_SupplierId}" />
                 </DataGrid.Columns>
                 <intr:Interaction.Triggers>
                     <intr:EventTrigger EventName="CellEditEnding">
@@ -43,9 +42,6 @@
                     </intr:EventTrigger>
                     <intr:EventTrigger EventName="KeyUp">
                         <intr:InvokeCommandAction Command="{Binding ChangesMadeCommand}"/>
-                    </intr:EventTrigger>
-                    <intr:EventTrigger EventName="SelectionChanged">
-                        <intr:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
                     </intr:EventTrigger>
                     <intr:EventTrigger EventName="AddingNewItem">
                         <intr:InvokeCommandAction Command="{Binding NewItemCommand}"/>
@@ -55,7 +51,6 @@
             <DataGrid Grid.Column="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding MedicineSupplyDetails}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                    <DataGridTextColumn Header="Medicine Id" Binding="{Binding Medicine_MedicineId}" />
                 </DataGrid.Columns>
                 <intr:Interaction.Triggers>
                     <intr:EventTrigger EventName="CellEditEnding">

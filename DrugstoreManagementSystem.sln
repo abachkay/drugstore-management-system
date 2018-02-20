@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.UI", "DrugstoreManagementSystem.UI\DrugstoreManagementSystem.UI.csproj", "{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.Services", "DrugstoreManagementSystem.Services\DrugstoreManagementSystem.Services.csproj", "{E6830F00-220C-4144-8D75-64936B4FE02B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6830F00-220C-4144-8D75-64936B4FE02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6830F00-220C-4144-8D75-64936B4FE02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6830F00-220C-4144-8D75-64936B4FE02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6830F00-220C-4144-8D75-64936B4FE02B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
