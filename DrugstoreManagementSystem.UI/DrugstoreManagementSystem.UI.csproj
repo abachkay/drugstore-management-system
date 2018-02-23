@@ -106,6 +106,8 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Configuration\AutofacConfiguration.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Models\MedicineProxy.cs" />
+    <Compile Include="ViewModels\MedicineSaleDetailViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MedicinesViewModel.cs" />
     <Compile Include="ViewModels\SalesViewModel.cs" />

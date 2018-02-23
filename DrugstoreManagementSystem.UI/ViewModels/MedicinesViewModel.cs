@@ -12,7 +12,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
     public class MedicinesViewModel: ViewModelBase
     {
         private readonly IMedicineService _medicineService;
-        private ICollection<Medicine> _archivedMedicines; 
+        private ICollection<Medicine> _archivedMedicines;
 
         public MedicinesViewModel(IMedicineService medicineService)
         {

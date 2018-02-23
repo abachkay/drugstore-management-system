@@ -21,8 +21,8 @@
                 </StackPanel>
             </Grid>
             <Grid>
-                <Button HorizontalAlignment="Left" Margin="5" Command="{Binding AddNewItem}">Add sale</Button>
-                <Button HorizontalAlignment="Right" Margin="5" Command="{Binding AddNewSubItem}">Add medicine to selected sale</Button>
+                <Button HorizontalAlignment="Left" Margin="5" Command="{Binding AddSale}">Add sale</Button>
+                <Button HorizontalAlignment="Right" Margin="5" Command="{Binding AddMedicineToSale}">Add medicine to selected sale</Button>
             </Grid>
         </StackPanel>
         <Grid Grid.Row="1">
@@ -44,14 +44,15 @@
                     </intr:EventTrigger>
                 </intr:Interaction.Triggers>
             </DataGrid>
-            <DataGrid Grid.Column="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedItem="{Binding SelectedMedicineSaleDetail}" ItemsSource="{Binding MedicineSaleDetails}">
+            <DataGrid Grid.Column="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding MedicineSaleDetails}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                     <DataGridTemplateColumn Header="Medicine">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.Medicines}" 
-                                          SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.SelectedMedicine}" >
+                                          SelectedIndex="{Binding MedicineIndex, Mode=TwoWay}" 
+>
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -60,11 +61,6 @@
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
-                                    <intr:Interaction.Triggers>
-                                        <intr:EventTrigger EventName="SelectionChanged">
-                                            <intr:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.ChangesMadeCommand}"/>
-                                        </intr:EventTrigger>
-                                    </intr:Interaction.Triggers>
                                 </ComboBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

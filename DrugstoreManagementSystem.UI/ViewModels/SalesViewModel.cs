@@ -47,45 +47,18 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             get => _selectedSale;
             set
             {
-                SetProperty(ref _selectedSale, value);               
-                MedicineSaleDetails = SelectedSale == null ? null : new ObservableCollection<MedicineSaleDetail>(SelectedSale.MedicineSaleDetails);                
+                SetProperty(ref _selectedSale, value);
+                MedicineSaleDetails = SelectedSale == null
+                    ? null
+                    : new ObservableCollection<MedicineSaleDetailViewModel>(SelectedSale.MedicineSaleDetails.Select(d => new MedicineSaleDetailViewModel(d,Medicines.ToArray())));
             }
         }
 
-        private ObservableCollection<MedicineSaleDetail> _medicineSaleDetails;
-        public ObservableCollection<MedicineSaleDetail> MedicineSaleDetails
+        private ObservableCollection<MedicineSaleDetailViewModel> _medicineSaleDetails;
+        public ObservableCollection<MedicineSaleDetailViewModel> MedicineSaleDetails
         {
             get => _medicineSaleDetails;
-            set
-            {
-                SetProperty(ref _medicineSaleDetails, value);
-                SelectedMedicineSaleDetail = MedicineSaleDetails == null ? null : MedicineSaleDetails.FirstOrDefault();
-            }
-        }       
-
-        private MedicineSaleDetail _selectedMedicineSaleDetail;
-        public MedicineSaleDetail SelectedMedicineSaleDetail
-        {
-            get => _selectedMedicineSaleDetail;
-            set
-            {
-                SetProperty(ref _selectedMedicineSaleDetail, value);               
-                SelectedMedicine = SelectedMedicineSaleDetail == null ? null : Medicines.FirstOrDefault(m => m.MedicineId == SelectedMedicineSaleDetail.Medicine.MedicineId);                
-            }
-        }
-
-        private Medicine _selectedMedicine;
-        public Medicine SelectedMedicine
-        {
-            get => _selectedMedicine;
-            set
-            {
-                SetProperty(ref _selectedMedicine, value);
-                if (SelectedMedicineSaleDetail != null)
-                {
-                    SelectedMedicineSaleDetail.Medicine = SelectedMedicine;
-                }
-            }
+            set => SetProperty(ref _medicineSaleDetails, value);
         }
 
         public ICommand SaveChangesCommand
@@ -105,8 +78,8 @@ namespace DrugstoreManagementSystem.UI.ViewModels
             get
             {
                 return new RelayCommand(o =>
-                {                   
-                    Sales = new ObservableCollection<Sale>(_saleService.GetSales());                    
+                {
+                    Sales = new ObservableCollection<Sale>(_saleService.GetSales());
                     UpdateChangesStatus(true);
                 });
             }
@@ -140,12 +113,17 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                         MessageBox.Show("Sale is not selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-
-                    MedicineSaleDetails.Add(new MedicineSaleDetail()
+                    if (SelectedSale != null)
                     {
-                        Quantity = 1,
-                        Medicine = SelectedMedicine
-                    });
+                        SelectedSale.MedicineSaleDetails.Add(new MedicineSaleDetail()
+                        {
+                            Quantity = 1,
+                            Medicine = Medicines?.FirstOrDefault(),
+                            Sale = SelectedSale
+
+                        });
+                        new ObservableCollection<MedicineSaleDetailViewModel>(SelectedSale.MedicineSaleDetails.Select(d => new MedicineSaleDetailViewModel(d, Medicines.ToArray())));
+                    }
                 });
             }
         }
