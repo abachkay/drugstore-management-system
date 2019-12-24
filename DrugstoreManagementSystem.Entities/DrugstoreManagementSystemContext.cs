@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace DrugstoreManagementSystem.Entities
 {
@@ -12,6 +7,7 @@ namespace DrugstoreManagementSystem.Entities
         public DrugstoreManagementSystemContext() : base("name=DrugstoreManagementSystem")
         {
         }
+
         public virtual DbSet<Medicine> Medicines { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<User> Users { get; set; }
