@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.UI", "DrugstoreManagementSystem.UI\DrugstoreManagementSystem.UI.csproj", "{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.Entities", "DrugstoreManagementSystem.Entities\DrugstoreManagementSystem.Entities.csproj", "{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.Repositories", "DrugstoreManagementSystem.Repositories\DrugstoreManagementSystem.Repositories.csproj", "{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugStoreManagementSystem.Databases", "DrugStoreManagementSystem.Databases\DrugStoreManagementSystem.Databases.csproj", "{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.Domain", "DrugstoreManagementSystem.Domain\DrugstoreManagementSystem.Domain.csproj", "{ADE64DA0-AC2D-4A0D-8C4D-5741CBB72BA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrugstoreManagementSystem.DataAccess", "DrugstoreManagementSystem.DataAccess\DrugstoreManagementSystem.DataAccess.csproj", "{7B504CD0-144E-4DB4-B209-791C573D2A35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,18 @@ Global
 		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{487EC0E8-B55F-4A38-8F2F-C3B5E7940BEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B8A4B56-0FEB-41C8-A365-D5822DA4EEC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D5A59F1-19E4-4AE6-A3B0-6EA59D2493C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D9E9D6-9408-4AC9-8584-82AAF8BC862E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE64DA0-AC2D-4A0D-8C4D-5741CBB72BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE64DA0-AC2D-4A0D-8C4D-5741CBB72BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE64DA0-AC2D-4A0D-8C4D-5741CBB72BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE64DA0-AC2D-4A0D-8C4D-5741CBB72BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B504CD0-144E-4DB4-B209-791C573D2A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B504CD0-144E-4DB4-B209-791C573D2A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B504CD0-144E-4DB4-B209-791C573D2A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B504CD0-144E-4DB4-B209-791C573D2A35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

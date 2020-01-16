@@ -10,10 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DrugstoreManagementSystem.Entities</RootNamespace>
     <AssemblyName>DrugstoreManagementSystem.Entities</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,32 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrugstoreManagementSystemContext.cs" />
-    <Compile Include="Entities\MedicineSupplyDetail.cs" />
-    <Compile Include="Entities\Supplier.cs" />
-    <Compile Include="Entities\Supply.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\Medicine.cs" />
-    <Compile Include="Entities\MedicineSaleDetail.cs" />
-    <Compile Include="Entities\Sale.cs" />
-    <Compile Include="Migrations\201705212321150_Initial.cs" />
-    <Compile Include="Migrations\201705212321150_Initial.Designer.cs">
-      <DependentUpon>201705212321150_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705212326234_m2.cs" />
-    <Compile Include="Migrations\201705212326234_m2.Designer.cs">
-      <DependentUpon>201705212326234_m2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705212333419_m3.cs" />
-    <Compile Include="Migrations\201705212333419_m3.Designer.cs">
-      <DependentUpon>201705212333419_m3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705220117392_m4.cs" />
-    <Compile Include="Migrations\201705220117392_m4.Designer.cs">
-      <DependentUpon>201705220117392_m4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705221229501_AddedDefaultsTOMedicines.cs" />
-    <Compile Include="Migrations\201705221229501_AddedDefaultsTOMedicines.Designer.cs">
-      <DependentUpon>201705221229501_AddedDefaultsTOMedicines.cs</DependentUpon>
+    <Compile Include="Migrations\202001161223288_InitialMigration.cs" />
+    <Compile Include="Migrations\202001161223288_InitialMigration.designer.cs">
+      <DependentUpon>202001161223288_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,21 +64,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705212321150_Initial.resx">
-      <DependentUpon>201705212321150_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001161223288_InitialMigration.resx">
+      <DependentUpon>202001161223288_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705212326234_m2.resx">
-      <DependentUpon>201705212326234_m2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705212333419_m3.resx">
-      <DependentUpon>201705212333419_m3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705220117392_m4.resx">
-      <DependentUpon>201705220117392_m4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705221229501_AddedDefaultsTOMedicines.resx">
-      <DependentUpon>201705221229501_AddedDefaultsTOMedicines.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrugstoreManagementSystem.Domain\DrugstoreManagementSystem.Domain.csproj">
+      <Project>{ade64da0-ac2d-4a0d-8c4d-5741cbb72ba2}</Project>
+      <Name>DrugstoreManagementSystem.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

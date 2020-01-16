@@ -16,7 +16,6 @@
          Background="{DynamicResource MaterialDesignPaper}"
          FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz" 
-          xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:Views="clr-namespace:DrugstoreManagementSystem.UI.Views">
     <Grid>
         <dragablz:TabablzControl>

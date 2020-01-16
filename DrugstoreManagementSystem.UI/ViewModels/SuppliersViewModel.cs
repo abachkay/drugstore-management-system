@@ -1,15 +1,10 @@
-﻿using DrugstoreManagementSystem.Entities;
-using DrugstoreManagementSystem.Repositories;
+﻿using DrugstoreManagementSystem.DataAccess;
+using DrugstoreManagementSystem.Domain;
 using DrugstoreManagementSystem.UI.Commands;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;

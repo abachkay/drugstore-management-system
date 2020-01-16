@@ -1,31 +1,37 @@
-namespace DrugstoreManagementSystem.Entities.Migrations
+﻿namespace DrugstoreManagementSystem.Entities.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DrugstoreManagementSystem.Entities.DrugstoreManagementSystemContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DrugstoreManagementSystemContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DrugstoreManagementSystem.Entities.DrugstoreManagementSystemContext context)
+        protected override void Seed(DrugstoreManagementSystemContext context)
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            if (!context.Users.Any())
+            {
+                var users = new[]
+                {
+                    new User
+                    {
+                        Login="abachkay",
+                        PasswordHash="428f78bf42693da2f9f4b4ba537c5f101e275607"
+                    },
+                    new User
+                    {
+                        Login="johnsmith",
+                        PasswordHash="428f78bf42693da2f9f4b4ba537c5f101e275607"
+                    },
+                };
+
+                context.Users.AddRange(users);
+            }
         }
     }
 }

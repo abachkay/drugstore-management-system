@@ -1,15 +1,12 @@
-﻿using DrugstoreManagementSystem.Entities;
-using DrugstoreManagementSystem.Repositories;
+﻿using DrugstoreManagementSystem.DataAccess;
+using DrugstoreManagementSystem.Domain;
 using DrugstoreManagementSystem.UI.Commands;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -20,9 +17,9 @@ namespace DrugstoreManagementSystem.UI.ViewModels
     public class SalesViewModel: ViewModelBase
     {
         #region Private fields
-        private DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
+        private readonly DrugstoreManagementSystemContext _context = new DrugstoreManagementSystemContext();
         private string _areChangesSavedMessage = "Changes are saved";
-        private Brush _areChangesSavedMessageColor = System.Windows.Media.Brushes.Green;
+        private Brush _areChangesSavedMessageColor = Brushes.Green;
         private int _selectedSaleIndex = 0;
         private Sale _selectedSale = null;
         #endregion
@@ -111,10 +108,12 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                             if (s.SaleTotal == 0)
                             {
                                 decimal total = 0;
+
                                 foreach (var msd in s.MedicineSaleDetails)
                                 {
-                                    total += msd.Medicine.Price * msd.Quantity;
+                                    total += msd.Medicine.Price ?? 0 * msd.Quantity ?? 0;
                                 }
+
                                 s.SaleTotal = total;
                                 _context.Entry(s).State = EntityState.Modified;
                             }
@@ -124,12 +123,12 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                         AreChangesSavedMessage = "Changes are saved.";
                         AreChangesSavedMessageColor = Brushes.Green;
                     }
-                    catch (DbUpdateException ex)
+                    catch (DbUpdateException)
                     {
                         MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         //MessageBox.Show(ex.InnerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    catch (DbEntityValidationException ex)
+                    catch (DbEntityValidationException)
                     {
                         MessageBox.Show("Some data is invalid or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         //MessageBox.Show(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -138,7 +137,6 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                     {
                         MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
                 });
             }
         }
@@ -149,6 +147,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                 return new RelayCommand(() =>
                 {
                     var changedEntries = _context.ChangeTracker.Entries();
+
                     foreach (var entry in changedEntries)
                     {
                         switch (entry.State)
@@ -165,6 +164,7 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                                 break;
                             default: break;
                         }
+
                         AreChangesSavedMessage = "Changes are saved.";
                         AreChangesSavedMessageColor = Brushes.Green;
                     }
@@ -226,8 +226,10 @@ namespace DrugstoreManagementSystem.UI.ViewModels
                     if (SelectedSale == null)
                     {
                         MessageBox.Show("Sale is not selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
                         return;
                     }
+
                     SelectedSale.MedicineSaleDetails.Add(new MedicineSaleDetail());
                     CollectionViewSource.GetDefaultView(MedicineSaleDetails).Refresh();
                     ChangesMadeCommand.Execute(null);
