@@ -5,7 +5,7 @@ namespace DrugstoreManagementSystem.DataAccess
 {
     public class UserRepository : IUserRepository
     {
-        private DrugstoreManagementSystemContext _context;
+        private readonly DrugstoreManagementSystemContext _context;
 
         public UserRepository(DrugstoreManagementSystemContext context)
         {

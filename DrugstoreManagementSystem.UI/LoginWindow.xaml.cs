@@ -31,9 +31,11 @@ namespace DrugstoreManagementSystem.UI
                 }
                 else
                 {
-                    var mainWindow = new MainWindow();
+                    var mainWindow = new MainWindow
+                    {
+                        DataContext = new MainWindowViewModel()
+                    };
 
-                    mainWindow.DataContext = new MainWindowViewModel();
                     mainWindow.Show();
 
                     Close();
