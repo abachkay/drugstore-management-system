@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DrugstoreManagementSystem.UI.Configuration;
+using DrugstoreManagementSystem.UI.ViewModels;
 using System.Windows;
+using Unity;
 
 namespace DrugstoreManagementSystem.UI
 {
@@ -13,5 +10,12 @@ namespace DrugstoreManagementSystem.UI
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            var loginWindowViewModel = UnityConfiguration.Container.Resolve<LoginWindowViewModel>();
+            var loginWindow = new LoginWindow { DataContext = loginWindowViewModel };
+
+            loginWindow.Show();
+        }
     }
 }

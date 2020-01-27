@@ -9,12 +9,12 @@
         Height="350" 
         Width="525"
         WindowState="Maximized"                
-         TextElement.FontWeight="Regular"
-         TextElement.FontSize="13"
-         TextOptions.TextFormattingMode="Ideal"
-         TextOptions.TextRenderingMode="Auto"
-         Background="{DynamicResource MaterialDesignPaper}"
-         FontFamily="{DynamicResource MaterialDesignFont}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz" 
         xmlns:Views="clr-namespace:DrugstoreManagementSystem.UI.Views">
     <Grid>

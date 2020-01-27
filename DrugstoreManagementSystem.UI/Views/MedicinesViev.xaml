@@ -3,22 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:c="clr-namespace:DrugstoreManagementSystem.UI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+             xmlns:intr="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:Views="clr-namespace:DrugstoreManagementSystem.UI.Views">
+    <UserControl.Resources>
+        <c:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <c:BoolToInvertedBoolConverter x:Key="BoolToInvertedBoolConverter" />
+    </UserControl.Resources>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="85"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
-            <Grid>
-                <TextBlock VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Left" Foreground="{Binding AreChangesSavedMessageColor}" Text="{Binding AreChangesSavedMessage}"></TextBlock>
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button  Margin="5" Background="red" BorderBrush="Red" Command="{Binding DiscardChangesCommand}">Discard Changes</Button>
-                    <Button  Margin="5" Background="Green" BorderBrush="Green" Command="{Binding SaveChangesCommand}">Save Changes</Button>
-                </StackPanel>
-            </Grid>
+            <Views:DataStateView DataContext="{Binding DataStateViewModel}"></Views:DataStateView>
             <Button HorizontalAlignment="Left" Margin="5" Command="{Binding AddNewItem}">Add medicine</Button>
         </StackPanel>
         <DataGrid Grid.Row="1" Margin="5" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" SelectedIndex="0" ItemsSource="{Binding Medicines}">
@@ -28,7 +28,17 @@
                 <DataGridTextColumn Header="Producer" Binding="{Binding ProducerName}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                <DataGridCheckBoxColumn ElementStyle="{StaticResource MaterialDesignCheckBox}" EditingElementStyle="{StaticResource MaterialDesignCheckBox}"  Header="Prescription Required" Binding="{Binding PrescriptionRequired}" />
+                <DataGridCheckBoxColumn ElementStyle="{StaticResource MaterialDesignCheckBox}" 
+                                        EditingElementStyle="{StaticResource MaterialDesignCheckBox}"  
+                                        Header="Prescription Required" Binding="{Binding PrescriptionRequired}" />
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path=DataContext.DeleteItem, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <intr:Interaction.Triggers>
                 <intr:EventTrigger EventName="CellEditEnding">

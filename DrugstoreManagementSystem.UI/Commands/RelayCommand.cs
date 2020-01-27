@@ -44,4 +44,46 @@ namespace DrugstoreManagementSystem.UI.Commands
             _methodToExecute.Invoke();
         }
     }
+
+    public class RelayCommand<T> : ICommand
+    {
+        private readonly Action<T> _methodToExecute;
+        private readonly Func<bool> _canExecuteEvaluator;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public RelayCommand(Action<T> methodToExecute, Func<bool> canExecuteEvaluator)
+        {
+            _methodToExecute = methodToExecute;
+            _canExecuteEvaluator = canExecuteEvaluator;
+        }
+
+        public RelayCommand(Action<T> methodToExecute)
+            : this(methodToExecute, null)
+        {
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            if (_canExecuteEvaluator == null)
+            {
+                return true;
+            }
+            else
+            {
+                bool result = _canExecuteEvaluator.Invoke();
+
+                return result;
+            }
+        }
+
+        public void Execute(object parameter)
+        {
+            _methodToExecute.Invoke((T)parameter);
+        }
+    }
 }

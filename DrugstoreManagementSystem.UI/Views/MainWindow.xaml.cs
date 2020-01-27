@@ -12,10 +12,11 @@ namespace DrugstoreManagementSystem.UI
     {
         public List<MedicineSupplyDetail> MedicineSupplyDetails = new List<MedicineSupplyDetail>();
         public List<MedicineSaleDetail> MedicineSaleDetails = new List<MedicineSaleDetail>();
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            //DataContext = new MainWindowViewModel();
 
             
             //RefreshData();

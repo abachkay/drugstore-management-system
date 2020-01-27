@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrugstoreManagementSystemContext.cs" />
-    <Compile Include="Helpers\HashManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
@@ -61,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DrugsoreManagementSystem.Common\DrugsoreManagementSystem.Common.csproj">
+      <Project>{B5E56CB0-A085-4B61-8A4C-C676751487F2}</Project>
+      <Name>DrugsoreManagementSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrugstoreManagementSystem.Domain\DrugstoreManagementSystem.Domain.csproj">
       <Project>{ADE64DA0-AC2D-4A0D-8C4D-5741CBB72BA2}</Project>
       <Name>DrugstoreManagementSystem.Domain</Name>

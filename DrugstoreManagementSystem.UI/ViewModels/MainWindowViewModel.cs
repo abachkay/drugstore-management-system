@@ -1,16 +1,22 @@
-﻿using DrugstoreManagementSystem.UI.Configuration;
-using Unity;
-
-namespace DrugstoreManagementSystem.UI.ViewModels
+﻿namespace DrugstoreManagementSystem.UI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MedicinesViewModel MedicinesViewModel { get; set; } = UnityConfiguration.Container.Resolve<MedicinesViewModel>();
+        public MedicinesViewModel MedicinesViewModel { get; }
 
-        public SuppliersViewModel SuppliersViewModel { get; set; } = UnityConfiguration.Container.Resolve<SuppliersViewModel>();
+        public SuppliersViewModel SuppliersViewModel { get; }
 
-        public SuppliesViewModel SuppliesViewModel { get; set; } = UnityConfiguration.Container.Resolve<SuppliesViewModel>();
+        public SuppliesViewModel SuppliesViewModel { get; }
 
-        public SalesViewModel SalesViewModel { get; set; } = UnityConfiguration.Container.Resolve<SalesViewModel>();
+        public SalesViewModel SalesViewModel { get; }
+
+        public MainWindowViewModel(MedicinesViewModel medicinesViewModel, SuppliersViewModel suppliersViewModel,
+            SuppliesViewModel suppliesViewModel, SalesViewModel salesViewModel)
+        {
+            MedicinesViewModel = medicinesViewModel;
+            SuppliersViewModel = suppliersViewModel;
+            SuppliesViewModel = suppliesViewModel;
+            SalesViewModel = salesViewModel;
+        }
     }
 }

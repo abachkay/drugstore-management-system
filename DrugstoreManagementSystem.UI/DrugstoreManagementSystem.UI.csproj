@@ -53,9 +53,8 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.0.1.920, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.0.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Cquential.Microsoft.Practices.Unity.2.0.414\lib\net35\Microsoft.Practices.Unity.dll</HintPath>
@@ -68,9 +67,8 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,12 +96,19 @@
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Configuration\UnityConfiguration.cs" />
+    <Compile Include="Converters\BoolToInvertedBoolConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\DataStateViewModel.cs" />
     <Compile Include="ViewModels\MedicinesViewModel.cs" />
     <Compile Include="ViewModels\SalesViewModel.cs" />
     <Compile Include="ViewModels\SuppliersViewModel.cs" />
     <Compile Include="ViewModels\SuppliesViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\DataStateView.xaml.cs">
+      <DependentUpon>DataStateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
@@ -119,11 +124,15 @@
     <Compile Include="Views\SuppliesView.xaml.cs">
       <DependentUpon>SuppliesView.xaml</DependentUpon>
     </Compile>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Views\DataStateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -131,10 +140,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -187,6 +196,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DrugsoreManagementSystem.Common\DrugsoreManagementSystem.Common.csproj">
+      <Project>{B5E56CB0-A085-4B61-8A4C-C676751487F2}</Project>
+      <Name>DrugsoreManagementSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrugstoreManagementSystem.DataAccess\DrugstoreManagementSystem.DataAccess.csproj">
       <Project>{7B504CD0-144E-4DB4-B209-791C573D2A35}</Project>
       <Name>DrugstoreManagementSystem.DataAccess</Name>
